@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class TransparentRoundedInputWidget extends StatelessWidget {
-  TransparentRoundedInputWidget({this.hintText, this.obscureText = false});
+  TransparentRoundedInputWidget({this.hintText, this.fillColor = Colors.white24, this.borderColor = Colors.white54, this.obscureText = false});
 
   final String hintText;
+  final Color fillColor;
+  final Color borderColor;
   final bool obscureText;
 
   @override
@@ -17,7 +19,7 @@ class TransparentRoundedInputWidget extends StatelessWidget {
         obscureText: this.obscureText,
         decoration: InputDecoration(
           hintText: this.hintText,
-          fillColor: Colors.white24,
+          fillColor: this.fillColor,
           filled: true,
           contentPadding:
           EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
@@ -25,11 +27,11 @@ class TransparentRoundedInputWidget extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(32.0)),
           ),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white54, width: 0),
+            borderSide: BorderSide(color: this.borderColor, width: 0),
             borderRadius: BorderRadius.all(Radius.circular(32.0)),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white54, width: 0),
+            borderSide: BorderSide(color: this.borderColor, width: 0),
             borderRadius: BorderRadius.all(Radius.circular(32.0)),
           ),
         ),
