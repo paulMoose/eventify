@@ -1,3 +1,4 @@
+import 'package:eventify/widgets/event_tasks/tab_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -32,38 +33,7 @@ class _DailyTaskScreen extends State<DailyTaskScreen> {
         primaryColor: Color(0xFF4E6E5D),
         accentColor: Colors.white,
       ),
-      home: DefaultTabController(
-        length: monthLenth,
-        child: Scaffold(
-            appBar: AppBar(
-              centerTitle: true,
-              leading: Padding(
-                padding: const EdgeInsets.only(left: 16.0, top: 5.0),
-                child: Text('April',style: TextStyle(fontSize: 14.0),),
-              ),
-              bottom: PreferredSize(
-                  child: TabBar(
-                      isScrollable: true,
-                      unselectedLabelColor: Colors.white.withOpacity(0.3),
-                      indicatorColor: Colors.white,
-                      labelColor: Colors.white,
-                      tabs: tabs,
-                  ),
-                  preferredSize: Size.fromHeight(15.0)
-              ),
-              actions: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(right: 16.0, top: 5.0),
-                  child: Text('2020',style: TextStyle(fontSize: 14.0),),
-                ),
-              ],
-            ),
-            backgroundColor: Colors.white,
-            body: TabBarView(
-              //TODO:create Widget for daily tasks
-              children: tasks,
-            )),
-      ),
+      home: TabBarWidget(),
     );
   }
 }
