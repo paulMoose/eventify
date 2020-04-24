@@ -1,3 +1,4 @@
+import 'package:eventify/screens/event_tasks/daily_task_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:eventify/screens/welcome_screen.dart';
 import 'package:eventify/screens/login_screen.dart';
@@ -20,6 +21,7 @@ class Eventify extends StatelessWidget {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),
         RegistrationScreen.id: (context) => RegistrationScreen(),
+        DailyTaskScreen.id: (context) => DailyTaskScreen()
       },
     );
   }
