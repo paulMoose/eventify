@@ -1,3 +1,5 @@
+import 'package:eventify/components/rounded_button.dart';
+import 'package:eventify/components/transparent_rounded_input.dart';
 import 'package:eventify/screens/login_screen.dart';
 import 'package:eventify/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
