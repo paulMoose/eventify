@@ -1,3 +1,4 @@
+import 'package:eventify/components/logo_image.dart';
 import 'package:eventify/components/rounded_button.dart';
 import 'package:eventify/components/transparent_rounded_input.dart';
 import 'package:eventify/screens/registration_screen.dart';
@@ -22,11 +23,11 @@ class _LoginScreenState extends State<LoginScreen> {
             width: double.infinity,
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
                 colors: [
-                  Color(0xFF6AF3C5),
-                  Color(0xFF3D77F8),
+                  Color(0xFF272D2D),
+                  Color(0xFF0CCE6B),
                 ],
               ),
             ),
@@ -37,19 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    'EVENTIFY',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w900,
-                        fontSize: 50.0),
-                  ),
-                ),
-                SizedBox(
-                  height: 48.0,
-                ),
+                LogoImage(),
                 TransparentRoundedInput(hintText: 'Enter your email'),
                 TransparentRoundedInput(
                     hintText: 'Enter your password', obscureText: true),
@@ -59,12 +48,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     //Implement registration functionality.
                   },
                   backgroundColor: Color(0xFFF7FFF6),
-                  textColor: Color(0xFF3D77F8),
+                  textColor: Color(0xFF272D2D),
                 ),
-                Row(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text("Dont't have an account?"),
+                    Text("Don't have an account?"),
+                    SizedBox(
+                      height: 12.0,
+                    ),
                     GestureDetector(
                       onTap: () {
                         Navigator.pushNamed(context, RegistrationScreen.id);
@@ -72,6 +64,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 12.0),
                         child: Text("Register", style: TextStyle(color: Colors.white)),
+                      ),
+                    ),
+                    Text("- or -"),
+                    GestureDetector(
+                      onTap: () {
+                        // TODO: Add functionality
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                        child: Text("Continue as Guest", style: TextStyle(color: Colors.white)),
                       ),
                     ),
                   ],
@@ -84,3 +86,5 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+
+

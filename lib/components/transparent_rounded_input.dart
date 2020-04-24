@@ -9,8 +9,8 @@ class TransparentRoundedInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 12.0),
-      child: TextField(
+      padding: EdgeInsets.symmetric(vertical: 8.0),
+      child: TextFormField(
         onChanged: (value) {
           //Do something with the user input.
         },
