@@ -12,26 +12,12 @@ class DailyTaskScreen extends StatefulWidget {
 class _DailyTaskScreen extends State<DailyTaskScreen> {
   @override
   Widget build(BuildContext context) {
-    var tabs = <Tab>[];
-    var tasks = <Widget>[];
-    var month = DateTime(DateTime.now().year, DateTime.now().month, 1);
-    var monthLenth = month.subtract(Duration(days: 1)).day;
-    for(var i = 1; i <= monthLenth; i++) {
-      tabs.add(
-        Tab(child: Text(i.toString()),)
-      );
-
-      tasks.add(
-        Container(child: Center(child: Text('Tab ' + i.toString())))
-      );
-    }
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,
         primaryColor: Color(0xFF4E6E5D),
-        accentColor: Colors.white,
+        accentColor: Color(0xFF272D2D),
       ),
       home: TabBarWidget(),
     );

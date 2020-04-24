@@ -1,3 +1,4 @@
+import 'package:eventify/widgets/event_tasks/tab_bar_content_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -7,7 +8,7 @@ class TabBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var tabs = <Tab>[];
-    var tasks = <Widget>[];
+    var tasks = <TabBarContentWidget>[];
     var month = DateTime(DateTime.now().year, DateTime.now().month, 1);
     var monthLenth = month.subtract(Duration(days: 1)).day;
     for(var i = 1; i <= monthLenth; i++) {
@@ -16,7 +17,7 @@ class TabBarWidget extends StatelessWidget {
       );
 
       tasks.add(
-        Container(child: Center(child: Text('Tab ' + i.toString())))
+        TabBarContentWidget()
       );
     }
     
@@ -30,14 +31,14 @@ class TabBarWidget extends StatelessWidget {
             child: Text('April',style: TextStyle(fontSize: 14.0),),
           ),
           bottom: PreferredSize(
-              child: TabBar(
-                  isScrollable: true,
-                  unselectedLabelColor: Colors.white.withOpacity(0.3),
-                  indicatorColor: Colors.white,
-                  labelColor: Colors.white,
-                  tabs: tabs,
-              ),
-              preferredSize: Size.fromHeight(15.0)
+            child: TabBar(
+              isScrollable: true,
+              unselectedLabelColor: Colors.white.withOpacity(0.3),
+              indicatorColor: Colors.white,
+              labelColor: Colors.white,
+              tabs: tabs,
+            ),
+            preferredSize: Size.fromHeight(15.0)
           ),
           actions: <Widget>[
             Padding(
@@ -46,9 +47,7 @@ class TabBarWidget extends StatelessWidget {
             ),
           ],
         ),
-        backgroundColor: Colors.white,
         body: TabBarView(
-          //TODO:create Widget for daily tasks
           children: tasks,
         )
       ),
