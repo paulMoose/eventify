@@ -1,5 +1,6 @@
+import 'package:eventify/screens/event_tasks/daily_task_screen.dart';
+import 'package:eventify/screens/event_tasks/calendar_screen.dart';
 import 'package:eventify/screens/browse_screen.dart';
-import 'package:eventify/screens/calendar_screen.dart';
 import 'package:eventify/screens/code_screen.dart';
 import 'package:eventify/screens/create_screen.dart';
 import 'package:eventify/screens/eventpage_screen.dart';
@@ -13,9 +14,9 @@ import 'package:eventify/screens/eventroom/eventroom_schedule_screen.dart';
 import 'package:eventify/screens/events_screen.dart';
 import 'package:eventify/screens/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:eventify/screens/welcome_screen.dart';
-import 'package:eventify/screens/login_screen.dart';
-import 'package:eventify/screens/registration_screen.dart';
+import 'package:eventify/screens/entry/welcome_screen.dart';
+import 'package:eventify/screens/entry/login_screen.dart';
+import 'package:eventify/screens/entry/registration_screen.dart';
 
 void main() => runApp(Eventify());
 
@@ -29,11 +30,12 @@ class Eventify extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: LoginScreen.id,
+      initialRoute: DailyTaskScreen.id,
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),
         RegistrationScreen.id: (context) => RegistrationScreen(),
+        DailyTaskScreen.id: (context) => DailyTaskScreen(),
         HomeScreen.id: (context) => HomeScreen(),
         CreateScreen.id: (context) => CreateScreen(),
         CodeScreen.id: (context) => CodeScreen(),

@@ -1,17 +1,18 @@
-import 'package:eventify/components/logo_image.dart';
-import 'package:eventify/components/rounded_button.dart';
-import 'package:eventify/components/transparent_rounded_input.dart';
-import 'package:eventify/screens/registration_screen.dart';
+import 'package:eventify/widgets/logo_image_widget.dart';
+import 'package:eventify/widgets/rounded_button_widget.dart';
+import 'package:eventify/widgets/transparent_rounded_input_widget.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
-  static String id = 'login_screen';
+import 'login_screen.dart';
+
+class RegistrationScreen extends StatefulWidget {
+  static String id = 'registration_screen';
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,42 +39,31 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                LogoImage(),
-                TransparentRoundedInput(hintText: 'Enter your email'),
-                TransparentRoundedInput(
+                LogoImageWidget(),
+                TransparentRoundedInputWidget(hintText: 'Enter your email'),
+                TransparentRoundedInputWidget(
                     hintText: 'Enter your password', obscureText: true),
-                RoundedButton(
-                  title: 'LOG IN',
+                TransparentRoundedInputWidget(
+                    hintText: 'Confirm your password', obscureText: true),
+                RoundedButtonWidget(
+                  title: 'REGISTER',
                   onPressed: () {
                     //Implement registration functionality.
                   },
                   backgroundColor: Color(0xFFF7FFF6),
-                  textColor: Color(0xFF272D2D),
+                  textColor: Color(0xFF3D77F8),
                 ),
-                Column(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text("Don't have an account?"),
-                    SizedBox(
-                      height: 12.0,
-                    ),
+                    Text("Already have an account?"),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, RegistrationScreen.id);
+                        Navigator.pushNamed(context, LoginScreen.id);
                       },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                        child: Text("Register", style: TextStyle(color: Colors.white)),
-                      ),
-                    ),
-                    Text("- or -"),
-                    GestureDetector(
-                      onTap: () {
-                        // TODO: Add functionality
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                        child: Text("Continue as Guest", style: TextStyle(color: Colors.white)),
+                        child: Text("Log in", style: TextStyle(color: Colors.white)),
                       ),
                     ),
                   ],
@@ -86,5 +76,3 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-
-
