@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class NavigationMenu extends StatelessWidget {
-  const NavigationMenu();
+class EventRoomMenuWidget extends StatelessWidget {
+  const EventRoomMenuWidget();
 
   @override
   Widget build(BuildContext context) {

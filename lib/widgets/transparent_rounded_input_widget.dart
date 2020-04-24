@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TransparentRoundedInput extends StatelessWidget {
-  TransparentRoundedInput({this.hintText, this.obscureText = false});
+class TransparentRoundedInputWidget extends StatelessWidget {
+  TransparentRoundedInputWidget({this.hintText, this.obscureText = false});
 
   final String hintText;
   final bool obscureText;

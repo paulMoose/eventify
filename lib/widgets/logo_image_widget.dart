@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class LogoImage extends StatelessWidget {
-  const LogoImage();
+class LogoImageWidget extends StatelessWidget {
+  const LogoImageWidget();
 
   @override
   Widget build(BuildContext context) {
