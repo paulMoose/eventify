@@ -1,3 +1,4 @@
+import 'package:eventify/screens/event_tasks/daily_task_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -8,7 +9,10 @@ class WeeklyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlatButton(
       onPressed: () { 
-        //TODO!
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => DailyTaskScreen())
+        );
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
