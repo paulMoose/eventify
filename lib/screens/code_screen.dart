@@ -14,7 +14,7 @@ class _CodeScreenState extends State<CodeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFF272D2D),
       body: Stack(
         children: <Widget>[
           Padding(
@@ -24,9 +24,10 @@ class _CodeScreenState extends State<CodeScreen> {
               child: Text(
                 'Enter event code',
                 style: TextStyle(
-                    color: Color(0xFF272D2D),
+                    color: Color(0xFFF7FFF6),
                     fontWeight: FontWeight.w900,
-                    fontSize: 30.0),
+                    fontSize: 30.0
+                ),
               ),
             ),
           ),
@@ -37,7 +38,9 @@ class _CodeScreenState extends State<CodeScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
 
-                TransparentRoundedInputWidget(hintText: 'Event code', fillColor: Color(0xFFC3F1CF), borderColor: Color(0xFFC3F1CF),),
+                TransparentRoundedInputWidget(
+                  hintText: 'Event code',
+                ),
                 RoundedButtonWidget(
                   title: 'SEARCH',
                   onPressed: () {
