@@ -58,36 +58,41 @@ class _BrowseScreenState extends State<BrowseScreen> {
         children: <Widget>[
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                TransparentRoundedInputWidget(
-                  hintText: 'Search for an event',
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20.0),
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: Text(
-                      'Popular near you',
-                      style: TextStyle(
-                          color: Color(0xFFF7FFF6),
-                          fontWeight: FontWeight.w900,
-                          fontSize: 30.0
+            child: LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    TransparentRoundedInputWidget(
+                      hintText: 'Search for an event',
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 20.0),
+                      child: Align(
+                        alignment: Alignment.topCenter,
+                        child: Text(
+                          'Popular near you',
+                          style: TextStyle(
+                              color: Color(0xFFF7FFF6),
+                              fontWeight: FontWeight.w900,
+                              fontSize: 30.0
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-                Container(
-                  height: 550.0,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: eventList,
-                    )
-                  ),
-                ),
-              ],
+                    Container(
+                      height: constraints.maxHeight - 139,
+                      child: SingleChildScrollView(
+                          child: Column(
+                            children: eventList,
+                          )
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
+
           ),
         ],
       ),
