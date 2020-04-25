@@ -26,11 +26,11 @@ class Eventify extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
         textTheme: TextTheme(
-          body1: TextStyle(color: Colors.black54),
+          body1: TextStyle(color: Colors.black54, fontFamily: 'Geo'),
         ),
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: DailyTaskScreen.id,
+      initialRoute: CalendarScreen.id,
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),
