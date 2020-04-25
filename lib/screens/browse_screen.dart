@@ -92,7 +92,6 @@ class _BrowseScreenState extends State<BrowseScreen> {
                 );
               },
             ),
-
           ),
         ],
       ),
