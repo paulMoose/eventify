@@ -1,18 +1,19 @@
 import 'dart:async';
 
 import 'package:eventify/models/event_model.dart';
+import 'package:eventify/screens/eventpage_screen.dart';
+import 'package:eventify/widgets/rounded_button_widget.dart';
 import 'package:eventify/widgets/transparent_rounded_input_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
 
-//import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:eventify/credentials.dart';
 import 'package:dio/dio.dart';
 
 import '../constants.dart';
 
 class CreateScreen extends StatefulWidget {
-  static final String id = 'create_event2';
+  static final String id = 'create_event';
 
   @override
   _CreateScreenState createState() {
@@ -25,13 +26,39 @@ class _CreateScreenState extends State<CreateScreen> {
       SharedAxisTransitionType.horizontal;
   bool _isAnimationReversed = false;
   int _currentPage = 0;
-  List<Widget> _pages = [
-    _NameFormPage(),
-    _LocationSelectionPage(),
-    _DateTimeFormPage()
-  ];
+
+  String eventName;
+  String location;
+
+  List<Widget> _pages;
+
+  @override
+  void initState() {
+    super.initState();
+    _pages = [
+      _NameFormPage(
+        onNameChanged: (value) {
+          setState(() {
+            eventName = value;
+          });
+        },
+      ),
+      _LocationSelectionPage(),
+      _DateTimeFormPage()
+    ];
+  }
 
   void _changePage(newPageIndex) {
+    if (newPageIndex == _pages.length) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => EventPageScreen(
+                    event: Event(
+                        name: 'Red Wedding',
+                        location: 'Riverrun'),
+                  )));
+    }
     if (newPageIndex >= 0 && newPageIndex < _pages.length) {
       setState(() {
         _isAnimationReversed = newPageIndex > _currentPage ? true : false;
@@ -90,10 +117,10 @@ class _CreateScreenState extends State<CreateScreen> {
                       duration: const Duration(milliseconds: 500),
                       reverse: !_isAnimationReversed,
                       transitionBuilder: (
-                          Widget child,
-                          Animation<double> animation,
-                          Animation<double> secondaryAnimation,
-                          ) {
+                        Widget child,
+                        Animation<double> animation,
+                        Animation<double> secondaryAnimation,
+                      ) {
                         return SharedAxisTransition(
                           child: child,
                           animation: animation,
@@ -134,14 +161,24 @@ class _CreateScreenState extends State<CreateScreen> {
   }
 }
 
-class _NameFormPage extends StatelessWidget {
+class _NameFormPage extends StatefulWidget {
+  _NameFormPage({
+    @required this.onNameChanged,
+  });
+
+  final Function onNameChanged;
+
+  @override
+  _NameFormPageState createState() => _NameFormPageState();
+}
+
+class _NameFormPageState extends State<_NameFormPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 40.0),
         child: Column(
-//          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             SizedBox(height: 40),
@@ -150,6 +187,7 @@ class _NameFormPage extends StatelessWidget {
             TransparentRoundedInputWidget(
               hintText: 'Name of the Event',
               autofocus: true,
+              onChaged: widget.onNameChanged,
             ),
           ],
         ),
@@ -165,6 +203,7 @@ class _DateTimeFormPage extends StatefulWidget {
 
 class __DateTimeFormPageState extends State<_DateTimeFormPage> {
   RangeValues _startTime = RangeValues(960.0, 1620.0);
+  DateTime _datePicked;
 
   String getTimeFromMinutes(double value) {
     num totalMinutes = value.round();
@@ -202,62 +241,118 @@ class __DateTimeFormPageState extends State<_DateTimeFormPage> {
     return Stack(
       children: <Widget>[
         Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            height: MediaQuery.of(context).size.height / 3,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(30), topLeft: Radius.circular(30)),
-              color: Colors.white,
-            ),
+            alignment: Alignment.topCenter,
             child: Column(
               children: <Widget>[
-                SizedBox(height: 40),
-                Text(
-                  "What time will the event take place?",
-                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                SizedBox(
+                  height: 50.0,
                 ),
-                SizedBox(height: 40),
-                RangeSlider(
-                  values: _startTime,
-                  min: 0,
-                  max: 2850,
-                  labels: RangeLabels(getTimeFromMinutes(_startTime.start),
-                      getTimeFromMinutes(_startTime.end)),
-                  activeColor: CustomColors.charlestonGreen,
-                  inactiveColor: CustomColors.aeroBlue,
-                  divisions: 95,
-                  onChanged: (RangeValues newRange) {
-                    setState(() {
-                      _startTime = newRange;
+                Text("Date & Time",
+                    style:
+                        TextStyle(fontWeight: FontWeight.w900, fontSize: 20)),
+                Text(
+                    _datePicked == null
+                        ? "Please select a date."
+                        : "${_datePicked.year}-${_datePicked.month}-${_datePicked.day}",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        fontSize: 40,
+                        color: CustomColors.charlestonGreen)),
+                Text(
+                    "From ${getTimeFromMinutes(_startTime.start)}\nTo ${getTimeFromMinutes(_startTime.end)}",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 30,
+                        color: CustomColors.charlestonGreen))
+              ],
+            )),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: RoundedButtonWidget(
+                  title: "Select a Date",
+                  backgroundColor: CustomColors.hookersGreen,
+                  textColor: Colors.white,
+                  onPressed: () {
+                    showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(2001),
+                            lastDate: DateTime(2200))
+                        .then((date) {
+                      setState(() {
+                        _datePicked = date;
+                      });
                     });
                   },
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+              ),
+              Container(
+                height: MediaQuery.of(context).size.height / 3,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(30),
+                      topLeft: Radius.circular(30)),
+                  color: Colors.white,
+                ),
+                child: Column(
                   children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        Text("Start Time"),
-                        Chip(
-                          label: Text(getTimeFromMinutes(_startTime.start)),
-                        ),
-                      ],
+                    SizedBox(height: 40),
+                    Text(
+                      "What time will the event take place?",
+                      style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.bold),
                     ),
-                    Column(
+                    SizedBox(height: 40),
+                    RangeSlider(
+                      values: _startTime,
+                      min: 0,
+                      max: 2850,
+                      labels: RangeLabels(getTimeFromMinutes(_startTime.start),
+                          getTimeFromMinutes(_startTime.end)),
+                      activeColor: CustomColors.charlestonGreen,
+                      inactiveColor: CustomColors.aeroBlue,
+                      divisions: 95,
+                      onChanged: (RangeValues newRange) {
+                        setState(() {
+                          _startTime = newRange;
+                        });
+                      },
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Text("End Time"),
-                        Chip(
-                          label: Text(getTimeFromMinutes(_startTime.end)),
+                        Column(
+                          children: <Widget>[
+                            Text("Start Time"),
+                            Chip(
+                              label: Text(getTimeFromMinutes(_startTime.start)),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: <Widget>[
+                            Text("End Time"),
+                            Chip(
+                              label: Text(getTimeFromMinutes(_startTime.end)),
+                            ),
+                          ],
                         ),
                       ],
                     ),
                   ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ],
@@ -333,7 +428,7 @@ class __LocationSelectionPageState extends State<_LocationSelectionPage> {
                 ),
                 Text('Where will it take place?',
                     style:
-                    TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
+                        TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
               ],
             ),
             TransparentRoundedInputWidget(

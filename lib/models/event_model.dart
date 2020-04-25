@@ -4,13 +4,13 @@ import '../constants.dart';
 
 class Event {
   String name;
-  Address address;
-  String locationName;
-  String startDateTime;
-  String endDateTime;
-  String imageUrl;
+  String location;
+  String description;
+//  DateTime day;
+//  TimeOfDay endDateTime;
+//  String imageUrl;
 
-  Event({this.name});
+  Event({this.name, this.location});
 }
 
 class Address {
@@ -22,6 +22,7 @@ class Address {
 
   Address({this.street, this.city, this.country, this.state, this.postalCode});
 }
+
 
 class EventDateTime {
   DateTime date;
