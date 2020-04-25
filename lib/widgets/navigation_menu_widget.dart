@@ -1,7 +1,6 @@
 import 'package:eventify/screens/entry/login_screen.dart';
-import 'package:eventify/screens/entry/welcome_screen.dart';
-import 'package:eventify/screens/event_tasks/calendar_screen.dart';
 import 'package:eventify/screens/event_tasks/daily_task_screen.dart';
+import 'package:eventify/screens/event_tasks/years_calendar_screen.dart';
 import 'package:eventify/screens/events_screen.dart';
 import 'package:eventify/screens/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +24,7 @@ class _NavigationMenuWidgetState extends State<NavigationMenuWidget> {
   List<ButtonInfo> buttonList = [
     ButtonInfo(icon: Icons.home, id: HomeScreen.id, title: 'Home'),
     ButtonInfo(icon: Icons.assignment, id: DailyTaskScreen.id, title: 'Daily Tasks'),
-    ButtonInfo(icon: Icons.calendar_today, id: CalendarScreen.id, title: 'Calendar'),
+    ButtonInfo(icon: Icons.calendar_today, id: YearsCalendarScreen.id, title: 'Calendar'),
     ButtonInfo(icon: Icons.book, id: EventsScreen.id, title: 'Events'),
     ButtonInfo(icon: Icons.contacts, id: HomeScreen.id, title: 'Contacts'),
     ButtonInfo(icon: Icons.message, id: HomeScreen.id, title: 'Messaging'),
@@ -104,7 +103,7 @@ class _NavigationMenuWidgetState extends State<NavigationMenuWidget> {
                                           setState(() {
                                             open = false;
                                           });
-                                          Navigator.pushNamed(context, CalendarScreen.id);
+                                          Navigator.pushNamed(context, YearsCalendarScreen.id);
                                         },
                                       ),
                                     ),
