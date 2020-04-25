@@ -1,4 +1,5 @@
 import 'package:eventify/screens/eventpage_screen.dart';
+import 'package:eventify/widgets/navigation_menu_widget.dart';
 import 'package:eventify/widgets/transparent_rounded_input_widget.dart';
 import 'package:eventify/widgets/rounded_button_widget.dart';
 import 'package:flutter/material.dart';
@@ -50,6 +51,7 @@ class _CodeScreenState extends State<CodeScreen> {
               ],
             ),
           ),
+          NavigationMenuWidget(),
         ],
       ),
     );

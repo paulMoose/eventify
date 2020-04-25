@@ -1,4 +1,5 @@
 import 'package:eventify/widgets/event_card_widget.dart';
+import 'package:eventify/widgets/navigation_menu_widget.dart';
 import 'package:eventify/widgets/transparent_rounded_input_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -93,6 +94,7 @@ class _BrowseScreenState extends State<BrowseScreen> {
               },
             ),
           ),
+          NavigationMenuWidget(),
         ],
       ),
     );
