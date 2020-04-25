@@ -18,26 +18,23 @@ class _CodeScreenState extends State<CodeScreen> {
       body: Stack(
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 240.0),
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: Text(
-                'Enter event code',
-                style: TextStyle(
-                    color: Color(0xFFF7FFF6),
-                    fontWeight: FontWeight.w900,
-                    fontSize: 30.0
-                ),
-              ),
-            ),
-          ),
-          Padding(
             padding: EdgeInsets.symmetric(horizontal: 40.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Text(
+                    'Enter event code',
+                    style: TextStyle(
+                        color: Color(0xFFF7FFF6),
+                        fontWeight: FontWeight.w900,
+                        fontSize: 30.0
+                    ),
+                  ),
+                ),
+                SizedBox(height: 50.0),
                 TransparentRoundedInputWidget(
                   hintText: 'Event code',
                 ),
