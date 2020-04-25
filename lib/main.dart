@@ -47,7 +47,8 @@ class Eventify extends StatelessWidget {
         CalendarScreen.id: (context) => CalendarScreen(),
         EventsScreen.id: (context) => EventsScreen(),
         EventRoomHomeScreen.id: (context) => EventRoomHomeScreen(),
-        EventRoomAnnouncementsScreen.id: (context) => EventRoomAnnouncementsScreen(),
+        EventRoomAnnouncementsScreen.id: (context) =>
+            EventRoomAnnouncementsScreen(),
         EventRoomChatScreen.id: (context) => EventRoomChatScreen(),
         EventRoomScheduleScreen.id: (context) => EventRoomScheduleScreen(),
         EventRoomMapsScreen.id: (context) => EventRoomMapsScreen(),
