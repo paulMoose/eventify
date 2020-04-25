@@ -35,6 +35,33 @@ class _EventRoomMenuWidgetState extends State<EventRoomMenuWidget> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
+                      Container(
+                        child: LayoutBuilder(
+                          builder: (BuildContext context, BoxConstraints constraints) {
+                            return Column(
+                              children: <Widget>[
+                                Row(
+                                  children: <Widget>[
+                                    CircleAvatar(),
+                                    SizedBox(width: 15.0),
+                                    Container(
+                                      width: constraints.maxWidth - 55,
+                                      child: Text(
+                                        'My Name',
+                                        style: TextStyle(
+                                          color: Color(0xFFC3F1CF),
+                                          fontSize: 20.0,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 20.0),
+                              ],
+                            );
+                          }
+                        ),
+                      ),
                       GestureDetector(
                         onTap: (){
                           open = !open;
