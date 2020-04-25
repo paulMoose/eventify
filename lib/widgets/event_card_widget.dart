@@ -1,20 +1,23 @@
+import 'package:eventify/models/event_model.dart';
 import 'package:eventify/screens/eventpage_screen.dart';
 import 'package:eventify/screens/eventroom/eventroom_home_screen.dart';
 import 'package:eventify/widgets/date_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class EventCardWidget extends StatelessWidget {
-  const EventCardWidget({this.month, this.day, this.title, this.description, this.canView = false, this.canEnter = false});
+  const EventCardWidget({this.event, this.dateTime, this.canView = false, this.canEnter = false});
 
-  final String month;
-  final String day;
-  final String title;
-  final String description;
+  final Event event;
+  final EventDateTime dateTime;
   final bool canView;
   final bool canEnter;
 
   @override
   Widget build(BuildContext context) {
+
+    DateFormat monthName = new DateFormat('MMMM');
+
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 10.0),
       child: Material(
@@ -35,8 +38,8 @@ class EventCardWidget extends StatelessWidget {
                 ),
               ),
               DateWidget(
-                  month: this.month,
-                  day: this.day,
+                  month: monthName.format(dateTime.date),
+                  day: dateTime.date.day.toString(),
               ),
               Padding(
                 padding: EdgeInsets.only(top: 13.0, left: 5.0),
@@ -46,7 +49,7 @@ class EventCardWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       Text(
-                        this.title,
+                        event.name,
                         style: TextStyle(
                           color: Color(0xFF272D2D),
                           fontWeight: FontWeight.w700,
@@ -54,7 +57,7 @@ class EventCardWidget extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        this.description,
+                        event.location,
                       ),
                       Visibility(
                         visible: this.canView,
@@ -64,9 +67,10 @@ class EventCardWidget extends StatelessWidget {
                             children: <Widget>[
                               GestureDetector(
                                 onTap: () {
-//                                if (this.canView) {
-//                                  Navigator.pushNamed(context, EventPageScreen.id);
-//                                }
+                                if (this.canView) {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) => EventPageScreen(event: event)));
+                                }
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 12.0, right: 20.0),
@@ -75,9 +79,10 @@ class EventCardWidget extends StatelessWidget {
                               ),
                               GestureDetector(
                                 onTap: () {
-//                                if (this.canEnter) {
-//                                  Navigator.pushNamed(context, EventRoomHomeScreen.id);
-//                                }
+                                if (this.canEnter) {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) => EventRoomHomeScreen(event: event)));
+                                }
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 12.0, right: 20.0),
