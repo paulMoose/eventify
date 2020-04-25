@@ -65,32 +65,36 @@ class _EventsScreenState extends State<EventsScreen> {
         children: <Widget>[
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20.0),
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: Text(
-                      'My events',
-                      style: TextStyle(
-                          color: Color(0xFFF7FFF6),
-                          fontWeight: FontWeight.w900,
-                          fontSize: 30.0
+            child: LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 20.0),
+                      child: Align(
+                        alignment: Alignment.topCenter,
+                        child: Text(
+                          'My events',
+                          style: TextStyle(
+                              color: Color(0xFFF7FFF6),
+                              fontWeight: FontWeight.w900,
+                              fontSize: 30.0
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-                Container(
-                  height: 600.0,
-                  child: SingleChildScrollView(
-                      child: Column(
-                        children: eventList,
-                      )
-                  ),
-                ),
-              ],
+                    Container(
+                      height: constraints.maxHeight - 75,
+                      child: SingleChildScrollView(
+                          child: Column(
+                            children: eventList,
+                          )
+                      ),
+                    ),
+                  ],
+                );
+              }
             ),
           ),
         ],
