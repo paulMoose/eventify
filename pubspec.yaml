@@ -26,6 +26,9 @@ dependencies:
 
   #more from pub.dev
   animations: ^1.0.0+5
+  flutter_rounded_date_picker: ^1.0.4
+  flutter_google_places: ^0.2.4
+  dio: ^3.0.9
 
 dev_dependencies:
   flutter_test:

@@ -18,19 +18,22 @@ import 'package:eventify/screens/entry/welcome_screen.dart';
 import 'package:eventify/screens/entry/login_screen.dart';
 import 'package:eventify/screens/entry/registration_screen.dart';
 
+import 'constants.dart';
+
 void main() => runApp(Eventify());
 
 class Eventify extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark().copyWith(
+      theme: ThemeData(
+        canvasColor: CustomColors.aeroBlue,
         textTheme: TextTheme(
           body1: TextStyle(color: Colors.black54),
         ),
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: DailyTaskScreen.id,
+      initialRoute: CreateScreen.id,
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),
@@ -51,6 +54,9 @@ class Eventify extends StatelessWidget {
         EventRoomFilesScreen.id: (context) => EventRoomFilesScreen(),
         EventRoomNotesScreen.id: (context) => EventRoomNotesScreen(),
       },
+      supportedLocales: [
+        const Locale('en', 'US'), // English
+      ],
     );
   }
 }
