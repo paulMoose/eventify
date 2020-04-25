@@ -5,8 +5,8 @@ import 'package:eventify/utils/dates.dart';
 import 'package:eventify/utils/screen_sizes.dart';
 import 'package:eventify/widgets/calendar/elements/month_title_widget.dart';
 
-class MonthViewWidget extends StatelessWidget {
-  const MonthViewWidget({
+class MonthViewButtonWidget extends StatelessWidget {
+  const MonthViewButtonWidget({
     @required this.context,
     @required this.year,
     @required this.month,
@@ -77,21 +77,30 @@ class MonthViewWidget extends StatelessWidget {
   }
 
   Widget buildMonthView(BuildContext context) {
-    return Container(
-      width: 7 * getDayNumberSize(context),
-      margin: EdgeInsets.all(padding),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          MonthTitleWidget(
-            month: month,
-            monthNames: monthNames,
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 8.0),
-            child: buildMonthDays(context),
-          ),
-        ],
+    return FlatButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => WeeksCalendarScreen())
+        );
+      },
+      padding: EdgeInsets.all(0),
+      child: Container(
+        width: 7 * getDayNumberSize(context),
+        margin: EdgeInsets.all(padding),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            MonthTitleWidget(
+              month: month,
+              monthNames: monthNames,
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 8.0),
+              child: buildMonthDays(context),
+            ),
+          ],
+        ),
       ),
     );
   }

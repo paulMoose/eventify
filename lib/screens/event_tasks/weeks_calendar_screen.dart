@@ -1,5 +1,6 @@
 import 'package:eventify/screens/event_tasks/daily_task_screen.dart';
 import 'package:eventify/screens/event_tasks/years_calendar_screen.dart';
+import 'package:eventify/widgets/calendar/elements/month_view_widget.dart';
 import 'package:eventify/widgets/calendar/weekly_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class _WeeksCalendarScreenState extends State<WeeksCalendarScreen> {
   ];
 
   var weeklyContent = <Widget>[];
-  for(var i = 0 ; i < 3 ; i++) {
+  for(var i = 0 ; i < 5 ; i++) {
     weeklyContent.add(
       Container(
         decoration: BoxDecoration(
@@ -93,7 +94,7 @@ class _WeeksCalendarScreenState extends State<WeeksCalendarScreen> {
                             padding: EdgeInsets.only(top: 9.0, bottom: 9.0),
                             child: DefaultTextStyle(
                               style: TextStyle(color: Colors.white),
-                              child: Text('Weekly')
+                              child: Text('Week')
                             ),
                           ),
                         )
@@ -105,7 +106,7 @@ class _WeeksCalendarScreenState extends State<WeeksCalendarScreen> {
                     FlatButton(
                       child: DefaultTextStyle(
                         style: TextStyle(color: Colors.white70),
-                        child: Text('Yearly')
+                        child: Text('Year')
                       ),
                       onPressed: () {
                         Navigator.push(
@@ -120,14 +121,56 @@ class _WeeksCalendarScreenState extends State<WeeksCalendarScreen> {
             ),
           ),
           body: Container(
-            child: SingleChildScrollView(
-              child: Stack(
-                children: <Widget>[
-                  Column(
-                    children: weeklyContent,
-                  )
-                ],
-              ),
+            color: Color(0xFFC3F1CF),
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Container(
+                  height: 200.0,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(30.0),
+                    )
+                  ),
+                  width: MediaQuery.of(context).size.width,
+                  child: Transform.scale(
+                    scale: 2.0,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Center(
+                          child: MonthViewWidget(
+                            context: context,
+                            year: 2020,
+                            month: 2,
+                            padding: 10.0,
+                            currentDateColor: Theme.of(context).primaryColor,
+                            highlightedDates: [],
+                            highlightedDateColor: Theme.of(context).accentColor,
+                            monthNames: ['Jan','Feb'],
+                            onMonthTap: null,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  // color: Color(0xFFFDE6BB),
+                  height: (MediaQuery.of(context).size.height) / 2,
+                  child: SingleChildScrollView(
+                      child: Stack(
+                        children: <Widget>[
+                          Column(
+                            children: weeklyContent,
+                          )
+                        ],
+                      ),
+                    ),
+                ),
+              ],
             ),
           ),
         ),

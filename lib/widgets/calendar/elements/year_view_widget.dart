@@ -1,5 +1,5 @@
 import 'package:eventify/utils/screen_sizes.dart';
-import 'package:eventify/widgets/calendar/elements/month_view_widget.dart';
+import 'package:eventify/widgets/calendar/elements/month_view_button.dart';
 import 'package:eventify/widgets/calendar/elements/year_title_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -26,11 +26,11 @@ class YearViewWidget extends StatelessWidget {
 
   Widget buildYearMonths(BuildContext context) {
     final List<Row> monthRows = <Row>[];
-    final List<MonthViewWidget> monthRowChildren = <MonthViewWidget>[];
+    final List<MonthViewButtonWidget> monthRowChildren = <MonthViewButtonWidget>[];
 
     for (int month = 1; month <= DateTime.monthsPerYear; month++) {
       monthRowChildren.add(
-        MonthViewWidget(
+        MonthViewButtonWidget(
           context: context,
           year: year,
           month: month,
@@ -48,7 +48,7 @@ class YearViewWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: List<MonthViewWidget>.from(monthRowChildren),
+            children: List<MonthViewButtonWidget>.from(monthRowChildren),
           ),
         );
         monthRowChildren.clear();

@@ -25,11 +25,15 @@ class WeeklyWidget extends StatelessWidget {
                 height: 45.0,
                 width: 45.0,
                 decoration: BoxDecoration(
+                  color: Color(0xFF4E6E5D),
                   borderRadius: BorderRadius.circular(30.0),
-                  border: Border.all(color: Theme.of(context).primaryColor),
+                  border: Border.all(color: Color(0xFF4E6E5D)),
                 ),
                 child: Center(
-                  child: Text('23')
+                  child: DefaultTextStyle(
+                    style: TextStyle(color: Colors.white),
+                    child: Text('23'),
+                  )
                 ),
               ),
               Padding(
