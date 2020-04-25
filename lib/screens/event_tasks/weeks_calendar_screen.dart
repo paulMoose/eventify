@@ -1,15 +1,16 @@
 import 'package:eventify/screens/event_tasks/daily_task_screen.dart';
+import 'package:eventify/screens/event_tasks/years_calendar_screen.dart';
 import 'package:eventify/widgets/calendar/weekly_widget.dart';
 import 'package:flutter/material.dart';
 
-class CalendarScreen extends StatefulWidget {
+class WeeksCalendarScreen extends StatefulWidget {
   static String id = 'calendar_screen';
 
   @override
-  _CalendarScreenState createState() => _CalendarScreenState();
+  _WeeksCalendarScreenState createState() => _WeeksCalendarScreenState();
 }
 
-class _CalendarScreenState extends State<CalendarScreen> {
+class _WeeksCalendarScreenState extends State<WeeksCalendarScreen> {
   @override
   Widget build(BuildContext context) {
     var tabs = <Tab>[
@@ -107,11 +108,10 @@ class _CalendarScreenState extends State<CalendarScreen> {
                         child: Text('Yearly')
                       ),
                       onPressed: () {
-                        //TODO
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(builder: (context) => DailyTaskScreen())
-                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => YearsCalendarScreen())
+                        );
                       },
                     ),
                   ],
