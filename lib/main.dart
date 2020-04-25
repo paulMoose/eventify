@@ -1,8 +1,9 @@
 import 'package:eventify/screens/event_tasks/daily_task_screen.dart';
-import 'package:eventify/screens/event_tasks/calendar_screen.dart';
 import 'package:eventify/screens/browse_screen.dart';
 import 'package:eventify/screens/code_screen.dart';
 import 'package:eventify/screens/create_screen.dart';
+import 'package:eventify/screens/event_tasks/weeks_calendar_screen.dart';
+import 'package:eventify/screens/event_tasks/years_calendar_screen.dart';
 import 'package:eventify/screens/eventpage_screen.dart';
 import 'package:eventify/screens/eventroom/eventroom_announcements_screen.dart';
 import 'package:eventify/screens/eventroom/eventroom_chat_screen.dart';
@@ -18,15 +19,18 @@ import 'package:eventify/screens/entry/welcome_screen.dart';
 import 'package:eventify/screens/entry/login_screen.dart';
 import 'package:eventify/screens/entry/registration_screen.dart';
 
+import 'constants.dart';
+
 void main() => runApp(Eventify());
 
 class Eventify extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark().copyWith(
+      theme: ThemeData(
+        canvasColor: CustomColors.aeroBlue,
         textTheme: TextTheme(
-          body1: TextStyle(color: Colors.black54),
+          body1: TextStyle(color: Colors.black54, fontFamily: 'Geo'),
         ),
       ),
       debugShowCheckedModeBanner: false,
@@ -41,16 +45,21 @@ class Eventify extends StatelessWidget {
         CodeScreen.id: (context) => CodeScreen(),
         BrowseScreen.id: (context) => BrowseScreen(),
         EventPageScreen.id: (context) => EventPageScreen(),
-        CalendarScreen.id: (context) => CalendarScreen(),
+        WeeksCalendarScreen.id: (context) => WeeksCalendarScreen(),
         EventsScreen.id: (context) => EventsScreen(),
         EventRoomHomeScreen.id: (context) => EventRoomHomeScreen(),
-        EventRoomAnnouncementsScreen.id: (context) => EventRoomAnnouncementsScreen(),
+        EventRoomAnnouncementsScreen.id: (context) =>
+            EventRoomAnnouncementsScreen(),
         EventRoomChatScreen.id: (context) => EventRoomChatScreen(),
         EventRoomScheduleScreen.id: (context) => EventRoomScheduleScreen(),
         EventRoomMapsScreen.id: (context) => EventRoomMapsScreen(),
         EventRoomFilesScreen.id: (context) => EventRoomFilesScreen(),
         EventRoomNotesScreen.id: (context) => EventRoomNotesScreen(),
+        YearsCalendarScreen.id: (context) => YearsCalendarScreen(),
       },
+      supportedLocales: [
+        const Locale('en', 'US'), // English
+      ],
     );
   }
 }

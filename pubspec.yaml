@@ -26,6 +26,10 @@ dependencies:
 
   #more from pub.dev
   animations: ^1.0.0+5
+  flutter_rounded_date_picker: ^1.0.4
+  flutter_google_places: ^0.2.4
+  dio: ^3.0.9
+  font_awesome_flutter: ^8.8.1
 
 dev_dependencies:
   flutter_test:
@@ -49,6 +53,8 @@ flutter:
   #  - images/a_dot_ham.jpeg
   assets:
     - images/
+    - images/people/
+    - images/vendors/
     - fonts/
 
   # An image asset can refer to one or more resolution-specific "variants", see

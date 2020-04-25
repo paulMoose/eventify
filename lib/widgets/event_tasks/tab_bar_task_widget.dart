@@ -2,8 +2,8 @@ import 'package:eventify/widgets/event_tasks/tab_bar_content_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class TabBarWidget extends StatelessWidget {
-  const TabBarWidget();
+class TabBarTaskWidget extends StatelessWidget {
+  const TabBarTaskWidget();
 
   @override
   Widget build(BuildContext context) {

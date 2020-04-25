@@ -12,8 +12,9 @@ class TabBarContentWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var tasks = <Widget>[];
     var length = Random().nextInt(6);
-    var color1 = Color(0xFF272D2D);
+    var color1 = Color(0xFF395C6B);
     var color2 = Color(0xFFC3F1CF);
+    var fontColor = Color(0xFF272D2D);
     var white = Colors.white;
     for (var i = 0; i < length; i++) {
       var color = i.isEven ? color1 : color2;
@@ -23,7 +24,7 @@ class TabBarContentWidget extends StatelessWidget {
         Container(
           color: i != length-1 ? bgColor : white,
           child: DefaultTextStyle(
-            style: TextStyle(color: i.isEven ? white : Colors.black),
+            style: TextStyle(color: i.isEven ? Colors.black87 : fontColor),
             child: Container (
               height: 150.0,
               decoration: BoxDecoration(
