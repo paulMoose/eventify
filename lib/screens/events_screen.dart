@@ -1,6 +1,8 @@
+import 'package:eventify/models/event_model.dart';
 import 'package:eventify/widgets/event_card_widget.dart';
 import 'package:eventify/widgets/navigation_menu_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:tuple/tuple.dart';
 
 class EventsScreen extends StatefulWidget {
   static String id = 'events_screen';
@@ -13,50 +15,42 @@ class _EventsScreenState extends State<EventsScreen> {
   @override
   Widget build(BuildContext context) {
 
-    List<Widget> eventList = [
-      EventCardWidget(
-        month: 'april',
-        day: '26',
-        title: 'Event',
-        description: 'This is an event',
-        canView: true,
-        canEnter: true,
+    List<Tuple2<Event, EventDateTime>> eventList = [
+      Tuple2<Event, EventDateTime>(
+          Event(
+              name: 'Newbies\' Comedy Club',
+              location: 'Little Theatre'
+          ),
+          EventDateTime(
+              date: DateTime.utc(2020, 4, 25)
+          )
       ),
-      EventCardWidget(
-        month: 'april',
-        day: '26',
-        title: 'Event',
-        description: 'This is an event',
-        canView: true,
-        canEnter: true,
+      Tuple2<Event, EventDateTime>(
+          Event(
+              name: 'Party',
+              location: 'here and here'
+          ),
+          EventDateTime(
+              date: DateTime.utc(2020, 5, 4)
+          )
       ),
-      EventCardWidget(
-        month: 'april',
-        day: '26',
-        title: 'Event',
-        description: 'This is an event',
-        canView: true,
+      Tuple2<Event, EventDateTime>(
+          Event(
+              name: 'ComicCon',
+              location: 'there and here'
+          ),
+          EventDateTime(
+              date: DateTime.utc(2020, 5, 17)
+          )
       ),
-      EventCardWidget(
-        month: 'april',
-        day: '26',
-        title: 'Event',
-        description: 'This is an event',
-        canView: true,
-      ),
-      EventCardWidget(
-        month: 'april',
-        day: '26',
-        title: 'Event',
-        description: 'This is an event',
-        canView: true,
-      ),
-      EventCardWidget(
-        month: 'april',
-        day: '26',
-        title: 'Event',
-        description: 'This is an event',
-        canView: true,
+      Tuple2<Event, EventDateTime>(
+          Event(
+              name: 'Convention',
+              location: 'there and there'
+          ),
+          EventDateTime(
+              date: DateTime.utc(2020, 6, 20)
+          )
       ),
     ];
 
@@ -86,10 +80,18 @@ class _EventsScreenState extends State<EventsScreen> {
                       ),
                     ),
                     Container(
-                      height: constraints.maxHeight - 75,
+                      height: constraints.maxHeight - 75 - 30,
                       child: SingleChildScrollView(
                           child: Column(
-                            children: eventList,
+                            children: <Widget>[
+                              for(Tuple2<Event, EventDateTime> event in eventList)
+                                EventCardWidget(
+                                  event: event.item1,
+                                  dateTime: event.item2,
+                                  canView: true,
+                                  canEnter: event.item2.date.isBefore(DateTime.now()) ? true : false,
+                                ),
+                            ],
                           )
                       ),
                     ),

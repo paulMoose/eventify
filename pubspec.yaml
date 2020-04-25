@@ -30,6 +30,8 @@ dependencies:
   flutter_google_places: ^0.2.4
   dio: ^3.0.9
   font_awesome_flutter: ^8.8.1
+  tuple: ^1.0.3
+  intl: ^0.16.1
 
 dev_dependencies:
   flutter_test:
