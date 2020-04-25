@@ -22,15 +22,18 @@ class TabBarContentWidget extends StatelessWidget {
       tasks.add(
         Container(
           color: i != length-1 ? bgColor : white,
-          child: Container (
-            height: 150.0,
-            decoration: BoxDecoration(
-              color: color,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(30.0),
-              )
+          child: DefaultTextStyle(
+            style: TextStyle(color: i.isEven ? white : Colors.black),
+            child: Container (
+              height: 150.0,
+              decoration: BoxDecoration(
+                color: color,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(30.0),
+                )
+              ),
+              child: TaskWidget(),
             ),
-            child: TaskWidget(),
           )
         )
       );
