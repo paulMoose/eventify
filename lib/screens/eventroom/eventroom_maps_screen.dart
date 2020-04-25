@@ -1,3 +1,4 @@
+import 'package:eventify/widgets/eventroom/eventroom_menu_widget.dart';
 import 'package:flutter/material.dart';
 
 class EventRoomMapsScreen extends StatefulWidget {
@@ -12,7 +13,28 @@ class _EventRoomMapsScreenState extends State<EventRoomMapsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Stack(),
+      body: Stack(
+        children: <Widget>[
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Container(
+                child: Text(
+                  'Event room maps',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xFF272D2D),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 20.0,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          EventRoomMenuWidget(),
+        ],
+      ),
     );
   }
 }
