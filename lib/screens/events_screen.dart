@@ -1,4 +1,5 @@
 import 'package:eventify/widgets/event_card_widget.dart';
+import 'package:eventify/widgets/navigation_menu_widget.dart';
 import 'package:flutter/material.dart';
 
 class EventsScreen extends StatefulWidget {
@@ -97,6 +98,7 @@ class _EventsScreenState extends State<EventsScreen> {
               }
             ),
           ),
+          NavigationMenuWidget(),
         ],
       ),
     );

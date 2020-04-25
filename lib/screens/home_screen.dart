@@ -1,6 +1,7 @@
 import 'package:eventify/screens/browse_screen.dart';
 import 'package:eventify/screens/code_screen.dart';
 import 'package:eventify/screens/create_screen.dart';
+import 'package:eventify/widgets/navigation_menu_widget.dart';
 import 'package:eventify/widgets/rounded_button_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -53,6 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
+          NavigationMenuWidget(),
         ],
       ),
     );

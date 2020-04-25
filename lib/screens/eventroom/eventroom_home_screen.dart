@@ -1,4 +1,5 @@
 import 'package:eventify/widgets/eventroom/eventroom_menu_widget.dart';
+import 'package:eventify/widgets/navigation_menu_widget.dart';
 import 'package:flutter/material.dart';
 
 class EventRoomHomeScreen extends StatefulWidget {
@@ -33,6 +34,7 @@ class _EventRoomHomeScreenState extends State<EventRoomHomeScreen> {
             ],
           ),
           EventRoomMenuWidget(),
+          NavigationMenuWidget(),
         ],
       ),
     );

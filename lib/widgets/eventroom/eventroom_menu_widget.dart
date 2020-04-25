@@ -64,7 +64,9 @@ class _EventRoomMenuWidgetState extends State<EventRoomMenuWidget> {
                       ),
                       GestureDetector(
                         onTap: (){
-                          open = !open;
+                          setState(() {
+                            open = false;
+                          });
                           Navigator.pushNamed(context, EventRoomHomeScreen.id);
                         },
                         child: Text(
@@ -79,7 +81,9 @@ class _EventRoomMenuWidgetState extends State<EventRoomMenuWidget> {
                       SizedBox(height: 20.0),
                       GestureDetector(
                         onTap: (){
-                          open = !open;
+                          setState(() {
+                            open = false;
+                          });
                           Navigator.pushNamed(context, EventRoomAnnouncementsScreen.id);
                         },
                         child: Text(
@@ -94,7 +98,9 @@ class _EventRoomMenuWidgetState extends State<EventRoomMenuWidget> {
                       SizedBox(height: 20.0),
                       GestureDetector(
                         onTap: (){
-                          open = !open;
+                          setState(() {
+                            open = false;
+                          });
                           Navigator.pushNamed(context, EventRoomChatScreen.id);
                         },
                         child: Text(
@@ -109,7 +115,9 @@ class _EventRoomMenuWidgetState extends State<EventRoomMenuWidget> {
                       SizedBox(height: 20.0),
                       GestureDetector(
                         onTap: (){
-                          open = !open;
+                          setState(() {
+                            open = false;
+                          });
                           Navigator.pushNamed(context, EventRoomScheduleScreen.id);
                         },
                         child: Text(
@@ -124,7 +132,9 @@ class _EventRoomMenuWidgetState extends State<EventRoomMenuWidget> {
                       SizedBox(height: 20.0),
                       GestureDetector(
                         onTap: (){
-                          open = !open;
+                          setState(() {
+                            open = false;
+                          });
                           Navigator.pushNamed(context, EventRoomMapsScreen.id);
                         },
                         child: Text(
@@ -139,7 +149,9 @@ class _EventRoomMenuWidgetState extends State<EventRoomMenuWidget> {
                       SizedBox(height: 20.0),
                       GestureDetector(
                         onTap: (){
-                          open = !open;
+                          setState(() {
+                            open = false;
+                          });
                           Navigator.pushNamed(context, EventRoomFilesScreen.id);
                         },
                         child: Text(
@@ -154,7 +166,9 @@ class _EventRoomMenuWidgetState extends State<EventRoomMenuWidget> {
                       SizedBox(height: 20.0),
                       GestureDetector(
                         onTap: (){
-                          open = !open;
+                          setState(() {
+                            open = false;
+                          });
                           Navigator.pushNamed(context, EventRoomNotesScreen.id);
                         },
                         child: Text(
@@ -170,24 +184,27 @@ class _EventRoomMenuWidgetState extends State<EventRoomMenuWidget> {
                   ),
                 ),
               ),
-              GestureDetector(
-                onTap: (){
-                  setState(() {
-                    open = !open;
-                  });
-                },
-                child: Padding(
-                  padding: EdgeInsets.only(top: 25.0),
-                  child: Container(
-                    height: 50.0,
-                    width: 50.0,
-                    decoration: BoxDecoration(
-                        color: Color(0xFF4E6E5D),
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20.0),
-                          bottomRight: Radius.circular(20.0),
-                        )
+              Padding(
+                padding: EdgeInsets.only(top: 25.0),
+                child: Container(
+                  height: 50.0,
+                  width: 50.0,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF4E6E5D),
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(20.0),
+                      bottomRight: Radius.circular(20.0),
+                    )
+                  ),
+                  child: IconButton(
+                    icon: Icon(
+                      open ? Icons.clear : Icons.menu
                     ),
+                    onPressed: (){
+                      setState(() {
+                        open = !open;
+                      });
+                    },
                   ),
                 ),
               ),
