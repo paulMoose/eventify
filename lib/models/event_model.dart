@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
@@ -6,11 +8,22 @@ class Event {
   String name;
   String location;
   String description;
+  String code;
 //  DateTime day;
 //  TimeOfDay endDateTime;
 //  String imageUrl;
 
-  Event({this.name, this.location});
+  Event({this.name, this.location}){
+    this.code = '';
+    int seed = 0;
+    for(var i = 0; i < this.name.length; i ++) {
+      seed += this.name.codeUnitAt(i);
+    }
+    var rng = new Random(seed);
+    for (var i = 0; i < 5; i++) {
+      this.code += rng.nextInt(10).toString();
+    }
+  }
 }
 
 class Address {

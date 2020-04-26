@@ -1,3 +1,4 @@
+import 'package:eventify/constants.dart';
 import 'package:eventify/widgets/calendar/yearly_calendar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -16,8 +17,8 @@ class _YearsCalendarScreen extends State<YearsCalendarScreen> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,
-        primaryColor: Color(0xFF4E6E5D),
-        accentColor: Color(0xFF272D2D),
+        primaryColor: CustomColors.hookersGreen,
+        accentColor: CustomColors.charlestonGreen,
       ),
       home: Center(
         child: ScrollingYearsCalendarWidget(
@@ -25,7 +26,7 @@ class _YearsCalendarScreen extends State<YearsCalendarScreen> {
           initialDate: DateTime.now(),
           firstDate: DateTime.now().subtract(const Duration(days: 5 * 365)),
           lastDate: DateTime.now(),
-          currentDateColor: Colors.blue,
+          currentDateColor: CustomColors.frenchBistre,
         ),
       ),
     );

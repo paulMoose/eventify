@@ -1,14 +1,18 @@
+import 'package:eventify/constants.dart';
+
 class Guest {
   final int id;
   final String role;
   final String name;
   final String imageUrl;
+  final CommunicationMode mode;
 
   Guest({
     this.id,
     this.role,
     this.name,
     this.imageUrl,
+    this.mode = CommunicationMode.APP,
   });
 }
 
