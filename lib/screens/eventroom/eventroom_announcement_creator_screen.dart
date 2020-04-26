@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:eventify/models/guest_model.dart';
+import 'package:eventify/models/message_model.dart';
 import 'package:eventify/models/vendor_model.dart';
 import 'package:eventify/widgets/guests.dart';
 import 'package:flutter/material.dart';
@@ -21,11 +22,14 @@ class AnnouncementCreatorScreen extends StatefulWidget {
 }
 
 class _AnnouncementCreatorScreenState extends State<AnnouncementCreatorScreen> {
-  String subject;
-  String message;
+
+  Message msg = Message(
+    subject: '',
+    message: '',
+  );
 
   _sendMessage() {
-//    _sendSMS(message, [15148068277]); //57c left
+//    _sendSMS(msg.message, [15148068277]); //57c left
   }
 
   void _sendEmail() async {}
@@ -40,6 +44,15 @@ class _AnnouncementCreatorScreenState extends State<AnnouncementCreatorScreen> {
       "text": message
     });
     print(response);
+  }
+
+  void updateMessage({String subject, String message}) {
+    setState(() {
+      this.msg.subject = subject;
+      this.msg.message = message;
+      this.msg.guestRecipients = widget.guestRecipients;
+      this.msg.vendorRecipients = widget.vendorRecipients;
+    });
   }
 
   @override
@@ -80,19 +93,24 @@ class _AnnouncementCreatorScreenState extends State<AnnouncementCreatorScreen> {
                   Container(
                     width: MediaQuery.of(context).size.width,
                     child: TextFormField(
+                      onChanged: (value){
+                        updateMessage(
+                          subject: value
+                        );
+                      },
                       decoration: InputDecoration(
                         hintText: "Subject",
                       ),
-                      onChanged: (value) {
-                        setState(() {
-                          subject = value;
-                        });
-                      },
                     ),
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width,
                     child: TextFormField(
+                      onChanged: (value){
+                        updateMessage(
+                            message: value
+                        );
+                      },
                       maxLines: 4,
                       keyboardType: TextInputType.multiline,
                       decoration: InputDecoration(
@@ -104,11 +122,6 @@ class _AnnouncementCreatorScreenState extends State<AnnouncementCreatorScreen> {
                           borderSide: BorderSide(color: Colors.white, width: 0),
                         ),
                       ),
-                      onChanged: (value) {
-                        setState(() {
-                          message = value;
-                        });
-                      },
                     ),
                   ),
                 ],
