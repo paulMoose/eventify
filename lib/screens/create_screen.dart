@@ -29,6 +29,7 @@ class _CreateScreenState extends State<CreateScreen> {
 
   String eventName;
   String location;
+  EventDateTime dateTime;
 
   List<Widget> _pages;
 
@@ -43,8 +44,20 @@ class _CreateScreenState extends State<CreateScreen> {
           });
         },
       ),
-      _LocationSelectionPage(),
-      _DateTimeFormPage()
+      _LocationSelectionPage(
+        onLocationChanged: (value) {
+          setState(() {
+            location = value;
+          });
+        },
+      ),
+      _DateTimeFormPage(
+        onDateTimeChanged: (value) {
+          setState(() {
+            dateTime = value;
+          });
+        },
+      )
     ];
   }
 
@@ -55,8 +68,9 @@ class _CreateScreenState extends State<CreateScreen> {
           MaterialPageRoute(
               builder: (context) => EventPageScreen(
                     event: Event(
-                        name: 'Red Wedding',
-                        location: 'Riverrun'),
+                        name: eventName,
+                        location: location,
+                        dateTime: dateTime),
                   )));
     }
     if (newPageIndex >= 0 && newPageIndex < _pages.length) {
@@ -187,7 +201,7 @@ class _NameFormPageState extends State<_NameFormPage> {
             TransparentRoundedInputWidget(
               hintText: 'Name of the Event',
               autofocus: true,
-              onChaged: widget.onNameChanged,
+              onChanged: widget.onNameChanged,
             ),
           ],
         ),
@@ -197,6 +211,12 @@ class _NameFormPageState extends State<_NameFormPage> {
 }
 
 class _DateTimeFormPage extends StatefulWidget {
+  _DateTimeFormPage({
+    @required this.onDateTimeChanged,
+  });
+
+  final Function onDateTimeChanged;
+
   @override
   __DateTimeFormPageState createState() => __DateTimeFormPageState();
 }
@@ -289,6 +309,11 @@ class __DateTimeFormPageState extends State<_DateTimeFormPage> {
                         .then((date) {
                       setState(() {
                         _datePicked = date;
+                        widget.onDateTimeChanged(
+                          EventDateTime(
+                            date: _datePicked,
+                          )
+                        );
                       });
                     });
                   },
@@ -361,6 +386,12 @@ class __DateTimeFormPageState extends State<_DateTimeFormPage> {
 }
 
 class _LocationSelectionPage extends StatefulWidget {
+  _LocationSelectionPage({
+    @required this.onLocationChanged,
+  });
+
+  final Function onLocationChanged;
+
   @override
   __LocationSelectionPageState createState() => __LocationSelectionPageState();
 }
@@ -382,6 +413,7 @@ class __LocationSelectionPageState extends State<_LocationSelectionPage> {
     setState(() {
       selectedLocation = _placesList[index];
       _selectedIndex = index;
+      widget.onLocationChanged(selectedLocation);
     });
   }
 
@@ -433,7 +465,8 @@ class __LocationSelectionPageState extends State<_LocationSelectionPage> {
             ),
             TransparentRoundedInputWidget(
               hintText: 'Search for a location',
-              onChaged: (value) {
+              onChanged: (value) {
+                widget.onLocationChanged(value);
                 getLocationResults(value);
               },
             ),
