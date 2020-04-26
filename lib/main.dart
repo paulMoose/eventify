@@ -28,7 +28,7 @@ class Eventify extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        canvasColor: CustomColors.aeroBlue,
+        canvasColor: Colors.transparent,
         textTheme: TextTheme(
           body1: TextStyle(color: Colors.black54, fontFamily: 'Geo'),
         ),

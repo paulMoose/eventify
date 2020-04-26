@@ -1,24 +1,48 @@
 import 'package:eventify/models/guest_model.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../constants.dart';
+import 'guestlist_pullup_widget.dart';
 
 class Guests extends StatelessWidget {
+
+  Guests({
+    this.hasTopBar = true,
+    this.title = 'Guests',
+    this.hasIcons = true,
+    this.small = false,
+  });
+
+  final bool hasTopBar;
+  final bool hasIcons;
+  final bool small;
+  final String title;
+
+  _showGuestListSheet(context) {
+    showModalBottomSheet(
+        context: context,
+        elevation: 20,
+        isScrollControlled: true,
+        builder: (BuildContext context) {
+          return GuestlistPullup();
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 10.0),
         child: Column(
           children: <Widget>[
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
-              child: Row(
+              child: hasTopBar ? Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    'Guests',
+                    title,
                     style: TextStyle(
                       color: CustomColors.charlestonGreen,
                       fontSize: 18.0,
@@ -26,16 +50,27 @@ class Guests extends StatelessWidget {
                       letterSpacing: 1.0,
                     ),
                   ),
-                  IconButton(
-                    icon: Icon(Icons.add),
-                    tooltip: 'Add a Guest',
-                    onPressed: () { },
-                  ),
+                  hasIcons ? Row(
+                    children: <Widget>[
+                      IconButton(
+                        icon: FaIcon(FontAwesomeIcons.bullhorn, size: 15),
+                        tooltip: 'Send Announcement',
+                        onPressed: () {
+                          _showGuestListSheet(context);
+                        },
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.add),
+                        tooltip: 'Add a Guest',
+                        onPressed: () {},
+                      ),
+                    ],
+                  ): Container(),
                 ],
-              ),
+              ) : null,
             ),
             Container(
-              height: 140.0,
+              height: small? 90 : 140.0,
               child: ListView.builder(
                 padding: EdgeInsets.only(left: 10.0),
                 scrollDirection: Axis.horizontal,
@@ -46,9 +81,8 @@ class Guests extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         CircleAvatar(
-                          radius: 35.0,
-                          backgroundImage:
-                          AssetImage(guests[index].imageUrl),
+                          radius: small? 15.0 : 35.0,
+                          backgroundImage: AssetImage(guests[index].imageUrl),
                         ),
                         SizedBox(height: 6.0),
                         Text(
@@ -79,3 +113,4 @@ class Guests extends StatelessWidget {
     );
   }
 }
+
