@@ -62,3 +62,12 @@ final Guest stark = Guest(
 
 // FAVORITE CONTACTS
 List<Guest> guests = [emilia, peter, jason, hodor, maisie, john, stark];
+
+Guest getGuestFromId(int id) {
+  for(Guest guest in guests) {
+    if(guest.id == id) {
+      return guest;
+    }
+  }
+  return null;
+}

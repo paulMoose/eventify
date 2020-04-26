@@ -1,11 +1,19 @@
+import 'package:eventify/models/guest_model.dart';
+import 'package:eventify/models/vendor_model.dart';
 import 'package:eventify/widgets/guests.dart';
-import 'package:eventify/widgets/transparent_rounded_input_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../constants.dart';
 
 class AnnouncementCreatorScreen extends StatefulWidget {
+  final List<Guest> guestRecipients;
+  final List<Vendor> vendorRecipients;
+
+  AnnouncementCreatorScreen({
+    this.guestRecipients, this.vendorRecipients
+  });
+
   @override
   _AnnouncementCreatorScreenState createState() =>
       _AnnouncementCreatorScreenState();
@@ -73,7 +81,7 @@ class _AnnouncementCreatorScreenState extends State<AnnouncementCreatorScreen> {
               ),
             ),
             Spacer(),
-            Guests(hasIcons: false, hasTopBar: false, small: true),
+            Guests(hasIcons: false, hasTopBar: false, small: true, guestList: widget.guestRecipients),
           ],
         ),
       ),
