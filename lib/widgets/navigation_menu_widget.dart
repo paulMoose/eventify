@@ -247,7 +247,7 @@ class _NavigationMenuWidgetState extends State<NavigationMenuWidget> {
                       ]
                     ),
                     child: Icon(
-                      open ? Icons.close : Icons.add,
+                      open ? Icons.keyboard_arrow_down : Icons.keyboard_arrow_up,
                       color: CustomColors.deepSpaceSparkle,
                       size: 30.0,
                     ),

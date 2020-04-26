@@ -1,3 +1,4 @@
+import 'package:eventify/constants.dart';
 import 'package:eventify/screens/eventroom/eventroom_announcements_screen.dart';
 import 'package:eventify/screens/eventroom/eventroom_chat_screen.dart';
 import 'package:eventify/screens/eventroom/eventroom_files_screen.dart';
@@ -70,11 +71,11 @@ class _EventRoomMenuWidgetState extends State<EventRoomMenuWidget> {
                           Navigator.pushNamed(context, EventRoomHomeScreen.id);
                         },
                         child: Text(
-                        'Home',
+                        'Home'.toUpperCase(),
                           style: TextStyle(
-                            color: Color(0xFFC3F1CF),
+                            color: Colors.white,
                             fontWeight: FontWeight.w700,
-                            fontSize: 25.0,
+                            fontSize: 20.0,
                           ),
                         ),
                       ),
@@ -87,11 +88,11 @@ class _EventRoomMenuWidgetState extends State<EventRoomMenuWidget> {
                           Navigator.pushNamed(context, EventRoomAnnouncementsScreen.id);
                         },
                         child: Text(
-                          'Announcements',
+                          'Announcements'.toUpperCase(),
                           style: TextStyle(
-                            color: Color(0xFFC3F1CF),
+                            color: Colors.white,
                             fontWeight: FontWeight.w700,
-                            fontSize: 25.0,
+                            fontSize: 20.0,
                           ),
                         ),
                       ),
@@ -104,11 +105,11 @@ class _EventRoomMenuWidgetState extends State<EventRoomMenuWidget> {
                           Navigator.pushNamed(context, EventRoomChatScreen.id);
                         },
                         child: Text(
-                          'Chatroom',
+                          'Chatroom'.toUpperCase(),
                           style: TextStyle(
-                            color: Color(0xFFC3F1CF),
+                            color: Colors.white,
                             fontWeight: FontWeight.w700,
-                            fontSize: 25.0,
+                            fontSize: 20.0,
                           ),
                         ),
                       ),
@@ -121,11 +122,11 @@ class _EventRoomMenuWidgetState extends State<EventRoomMenuWidget> {
                           Navigator.pushNamed(context, EventRoomScheduleScreen.id);
                         },
                         child: Text(
-                          'Schedule',
+                          'Schedule'.toUpperCase(),
                           style: TextStyle(
-                            color: Color(0xFFC3F1CF),
+                            color: Colors.white,
                             fontWeight: FontWeight.w700,
-                            fontSize: 25.0,
+                            fontSize: 20.0,
                           ),
                         ),
                       ),
@@ -138,11 +139,11 @@ class _EventRoomMenuWidgetState extends State<EventRoomMenuWidget> {
                           Navigator.pushNamed(context, EventRoomMapsScreen.id);
                         },
                         child: Text(
-                          'Maps',
+                          'Maps'.toUpperCase(),
                           style: TextStyle(
-                            color: Color(0xFFC3F1CF),
+                            color: Colors.white,
                             fontWeight: FontWeight.w700,
-                            fontSize: 25.0,
+                            fontSize: 20.0,
                           ),
                         ),
                       ),
@@ -155,11 +156,11 @@ class _EventRoomMenuWidgetState extends State<EventRoomMenuWidget> {
                           Navigator.pushNamed(context, EventRoomFilesScreen.id);
                         },
                         child: Text(
-                          'Files',
+                          'Files'.toUpperCase(),
                           style: TextStyle(
-                            color: Color(0xFFC3F1CF),
+                            color: Colors.white,
                             fontWeight: FontWeight.w700,
-                            fontSize: 25.0,
+                            fontSize: 20.0,
                           ),
                         ),
                       ),
@@ -172,11 +173,11 @@ class _EventRoomMenuWidgetState extends State<EventRoomMenuWidget> {
                           Navigator.pushNamed(context, EventRoomNotesScreen.id);
                         },
                         child: Text(
-                          'Notes',
+                          'Notes'.toUpperCase(),
                           style: TextStyle(
-                            color: Color(0xFFC3F1CF),
+                            color: Colors.white,
                             fontWeight: FontWeight.w700,
-                            fontSize: 25.0,
+                            fontSize: 20.0,
                           ),
                         ),
                       ),
@@ -185,28 +186,33 @@ class _EventRoomMenuWidgetState extends State<EventRoomMenuWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 25.0),
-                child: Container(
-                  height: 50.0,
-                  width: 50.0,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF4E6E5D),
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(20.0),
-                      bottomRight: Radius.circular(20.0),
-                    )
-                  ),
-                  child: IconButton(
-                    icon: Icon(
-                      open ? Icons.clear : Icons.menu
+                padding: EdgeInsets.only(bottom: 120.0),
+                child: Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Container(
+                    height: 50.0,
+                    width: 50.0,
+                    decoration: BoxDecoration(
+                        color: CustomColors.hookersGreen,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(20.0),
+                          bottomRight: Radius.circular(20.0),
+                        )
                     ),
-                    onPressed: (){
-                      setState(() {
-                        open = !open;
-                      });
-                    },
+                    child: IconButton(
+                      icon: Icon(
+                        open ? Icons.clear : Icons.menu,
+                        color: Colors.white,
+                      ),
+                      onPressed: (){
+                        setState(() {
+                          open = !open;
+                        });
+                      },
+                    ),
                   ),
                 ),
+
               ),
             ],
           ),
