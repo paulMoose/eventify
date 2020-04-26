@@ -12,12 +12,18 @@ class Guests extends StatelessWidget {
     this.title = 'Guests',
     this.hasIcons = true,
     this.small = false,
-  });
+    this.guestList,
+  }){
+    if (this.guestList == null) {
+      this.guestList = guests;
+    }
+  }
 
   final bool hasTopBar;
   final bool hasIcons;
   final bool small;
   final String title;
+  List<Guest> guestList;
 
   _showGuestListSheet(context) {
     showModalBottomSheet(
@@ -74,7 +80,7 @@ class Guests extends StatelessWidget {
               child: ListView.builder(
                 padding: EdgeInsets.only(left: 10.0),
                 scrollDirection: Axis.horizontal,
-                itemCount: guests.length,
+                itemCount: guestList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: EdgeInsets.all(10.0),
@@ -82,11 +88,11 @@ class Guests extends StatelessWidget {
                       children: <Widget>[
                         CircleAvatar(
                           radius: small? 15.0 : 35.0,
-                          backgroundImage: AssetImage(guests[index].imageUrl),
+                          backgroundImage: AssetImage(guestList[index].imageUrl),
                         ),
                         SizedBox(height: 6.0),
                         Text(
-                          guests[index].name,
+                          guestList[index].name,
                           style: TextStyle(
                             color: CustomColors.charlestonGreen,
                             fontSize: 16.0,
@@ -94,7 +100,7 @@ class Guests extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          guests[index].role,
+                          guestList[index].role,
                           style: TextStyle(
                             color: CustomColors.hookersGreen,
                             fontSize: 12.0,
