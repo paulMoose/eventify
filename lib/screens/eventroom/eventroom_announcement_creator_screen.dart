@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:eventify/models/event_model.dart';
 import 'package:eventify/models/guest_model.dart';
 import 'package:eventify/models/message_model.dart';
 import 'package:eventify/models/vendor_model.dart';
@@ -6,15 +7,17 @@ import 'package:eventify/widgets/guests.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_sms/flutter_sms.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 
 import '../../constants.dart';
 import '../../credentials.dart';
 
 class AnnouncementCreatorScreen extends StatefulWidget {
+  final Event event;
   final List<Guest> guestRecipients;
   final List<Vendor> vendorRecipients;
 
-  AnnouncementCreatorScreen({this.guestRecipients, this.vendorRecipients});
+  AnnouncementCreatorScreen({this.event, this.guestRecipients, this.vendorRecipients});
 
   @override
   _AnnouncementCreatorScreenState createState() =>
@@ -23,23 +26,73 @@ class AnnouncementCreatorScreen extends StatefulWidget {
 
 class _AnnouncementCreatorScreenState extends State<AnnouncementCreatorScreen> {
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   Message msg = Message(
     subject: '',
     message: '',
   );
 
   _sendMessage() {
-//    _sendSMS(msg.message, [15148068277]); //57c left
+    List<int> guestNumber = List();
+    List<String> guestEmail = List();
+
+    for (Guest guest in msg.guestRecipients) {
+      switch (guest.mode) {
+        case (CommunicationMode.APP):
+          print('app');
+          break;
+        case (CommunicationMode.SMS):
+          print('sms');
+          guestNumber.add(int.parse(guest.info));
+          break;
+        case (CommunicationMode.EMAIL):
+          print('email');
+          guestEmail.add(guest.info);
+          break;
+        case (CommunicationMode.MESSENGER):
+          print('messenger');
+          break;
+        default:
+          break;
+      }
+    }
+    _sendEmail(guestEmail);
+//    _sendSMS(msg.message, guestNumber); //57c left
   }
 
-  void _sendEmail() async {}
+  void _sendEmail(List<String> recipients) async {
+    final Email email = Email(
+      body: msg.message,
+      subject: msg.subject,
+      recipients: recipients,
+//      attachmentPaths: attachments,
+      isHTML: false,
+    );
 
-  void _sendSMS(String message, List<int> recipents) async {
+    String platformResponse;
+
+    try {
+      await FlutterEmailSender.send(email);
+      platformResponse = 'success';
+    } catch (error) {
+      platformResponse = error.toString();
+    }
+
+    if (!mounted) return;
+
+    _scaffoldKey.currentState.showSnackBar(SnackBar(
+      content: Text(platformResponse),
+    ));
+  }
+
+  void _sendSMS(String message, List<int> recipients) async {
     String baseURL = 'https://rest.nexmo.com/sms/json';
     Response response = await Dio().post(baseURL, data: {
       "api_key": VONAGE_API_KEY,
       "api_secret": VONAGE_SECRET,
-      "to": recipents[0],
+      "to": recipients[0],
       "from": VONAGE_NUMBER,
       "text": message
     });
@@ -48,8 +101,12 @@ class _AnnouncementCreatorScreenState extends State<AnnouncementCreatorScreen> {
 
   void updateMessage({String subject, String message}) {
     setState(() {
-      this.msg.subject = subject;
-      this.msg.message = message;
+      if(subject != null) {
+        this.msg.subject = subject;
+      }
+      if(message != null) {
+        this.msg.message = message;
+      }
       this.msg.guestRecipients = widget.guestRecipients;
       this.msg.vendorRecipients = widget.vendorRecipients;
     });
@@ -58,6 +115,7 @@ class _AnnouncementCreatorScreenState extends State<AnnouncementCreatorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: CustomColors.charlestonGreen,
       appBar: AppBar(
         title: Text("Create an Announcement"),
@@ -69,7 +127,10 @@ class _AnnouncementCreatorScreenState extends State<AnnouncementCreatorScreen> {
             icon: FaIcon(FontAwesomeIcons.paperPlane, size: 15),
             tooltip: 'Send Announcement',
             onPressed: () {
-              _sendMessage();
+              if (_formKey.currentState.validate()) {
+                _formKey.currentState.save();
+                _sendMessage();
+              }
             },
           ),
         ],
@@ -86,45 +147,63 @@ class _AnnouncementCreatorScreenState extends State<AnnouncementCreatorScreen> {
           children: <Widget>[
             Padding(
               padding: EdgeInsets.all(20.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    child: TextFormField(
-                      onChanged: (value){
-                        updateMessage(
-                          subject: value
-                        );
-                      },
-                      decoration: InputDecoration(
-                        hintText: "Subject",
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    child: TextFormField(
-                      onChanged: (value){
-                        updateMessage(
-                            message: value
-                        );
-                      },
-                      maxLines: 4,
-                      keyboardType: TextInputType.multiline,
-                      decoration: InputDecoration(
-                        hintText: "Message",
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white, width: 0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: TextFormField(
+                        controller: TextEditingController(
+                            text: widget.event.name + ' Announcement'
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white, width: 0),
+                        onSaved: (value){
+                          updateMessage(
+                              subject: value
+                          );
+                        },
+                        validator: (value) {
+                          if(value.isEmpty) {
+                            return 'Please enter a subject';
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          hintText: "Subject",
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: TextFormField(
+                        onSaved: (value){
+                          updateMessage(
+                              message: value
+                          );
+                        },
+                        validator: (value) {
+                          if(value.isEmpty) {
+                            return 'Please enter a message';
+                          }
+                          return null;
+                        },
+                        maxLines: 4,
+                        keyboardType: TextInputType.multiline,
+                        decoration: InputDecoration(
+                          hintText: "Message",
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white, width: 0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white, width: 0),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             Spacer(),
