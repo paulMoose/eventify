@@ -1,14 +1,18 @@
+import 'package:eventify/constants.dart';
+
 class Vendor {
   final int id;
   final String type;
   final String name;
   final String imageUrl;
+  final CommunicationMode mode;
 
   Vendor({
     this.id,
     this.type,
     this.name,
     this.imageUrl,
+    this.mode = CommunicationMode.APP,
   });
 }
 

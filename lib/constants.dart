@@ -14,3 +14,10 @@ class CustomColors {
   static final Color hookersGreen = Color(0xFF4e6e5d);
   static final Color charlestonGreen = Color(0xFF272d2d);
 }
+
+enum CommunicationMode {
+  SMS,
+  EMAIL,
+  MESSENGER,
+  APP
+}

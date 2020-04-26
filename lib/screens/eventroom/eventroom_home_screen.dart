@@ -47,7 +47,7 @@ class _EventRoomHomeScreenState extends State<EventRoomHomeScreen> {
               ),
             ],
           ),
-          EventRoomMenuWidget(),
+          EventRoomMenuWidget(event: widget.event),
           NavigationMenuWidget(),
         ],
       ),

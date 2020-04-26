@@ -1,4 +1,5 @@
 import 'package:eventify/constants.dart';
+import 'package:eventify/models/event_model.dart';
 import 'package:eventify/screens/eventroom/eventroom_announcements_screen.dart';
 import 'package:eventify/screens/eventroom/eventroom_chat_screen.dart';
 import 'package:eventify/screens/eventroom/eventroom_files_screen.dart';
@@ -9,6 +10,12 @@ import 'package:eventify/screens/eventroom/eventroom_schedule_screen.dart';
 import 'package:flutter/material.dart';
 
 class EventRoomMenuWidget extends StatefulWidget {
+
+  EventRoomMenuWidget({
+    @required this.event,
+  });
+
+  final Event event;
 
   @override
   _EventRoomMenuWidgetState createState() => _EventRoomMenuWidgetState();
@@ -33,153 +40,177 @@ class _EventRoomMenuWidgetState extends State<EventRoomMenuWidget> {
                 width: MediaQuery.of(context).size.width/3 * 2,
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 30.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                  child: Stack(
                     children: <Widget>[
-                      Container(
-                        child: LayoutBuilder(
-                          builder: (BuildContext context, BoxConstraints constraints) {
-                            return Column(
-                              children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    CircleAvatar(),
-                                    SizedBox(width: 15.0),
-                                    Container(
-                                      width: constraints.maxWidth - 55,
-                                      child: Text(
-                                        'My Name',
-                                        style: TextStyle(
-                                          color: Color(0xFFC3F1CF),
-                                          fontSize: 20.0,
-                                        ),
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Padding(
+                          padding: EdgeInsets.only(bottom: 50.0),
+                          child: Text(
+                            widget.event.code,
+                            style: TextStyle(
+                                color: CustomColors.aeroBlue
+                            ),
+                          ),
+                        ),
+
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          Container(
+                            child: LayoutBuilder(
+                                builder: (BuildContext context, BoxConstraints constraints) {
+                                  return Column(
+                                    children: <Widget>[
+                                      Row(
+                                        children: <Widget>[
+                                          CircleAvatar(),
+                                          SizedBox(width: 15.0),
+                                          Container(
+                                            width: constraints.maxWidth - 55,
+                                            child: Text(
+                                              'My Name',
+                                              style: TextStyle(
+                                                color: Color(0xFFC3F1CF),
+                                                fontSize: 20.0,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 20.0),
-                              ],
-                            );
-                          }
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: (){
-                          setState(() {
-                            open = false;
-                          });
-                          Navigator.pushNamed(context, EventRoomHomeScreen.id);
-                        },
-                        child: Text(
-                        'Home'.toUpperCase(),
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 20.0,
+                                      SizedBox(height: 20.0),
+                                    ],
+                                  );
+                                }
+                            ),
                           ),
-                        ),
-                      ),
-                      SizedBox(height: 20.0),
-                      GestureDetector(
-                        onTap: (){
-                          setState(() {
-                            open = false;
-                          });
-                          Navigator.pushNamed(context, EventRoomAnnouncementsScreen.id);
-                        },
-                        child: Text(
-                          'Announcements'.toUpperCase(),
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 20.0,
+                          GestureDetector(
+                            onTap: (){
+                              setState(() {
+                                open = false;
+                              });
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => EventRoomHomeScreen(event: widget.event)));
+                            },
+                            child: Text(
+                              'Home'.toUpperCase(),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 20.0,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      SizedBox(height: 20.0),
-                      GestureDetector(
-                        onTap: (){
-                          setState(() {
-                            open = false;
-                          });
-                          Navigator.pushNamed(context, EventRoomChatScreen.id);
-                        },
-                        child: Text(
-                          'Chatroom'.toUpperCase(),
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 20.0,
+                          SizedBox(height: 20.0),
+                          GestureDetector(
+                            onTap: (){
+                              setState(() {
+                                open = false;
+                              });
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => EventRoomAnnouncementsScreen(event: widget.event)));
+                            },
+                            child: Text(
+                              'Announcements'.toUpperCase(),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 20.0,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      SizedBox(height: 20.0),
-                      GestureDetector(
-                        onTap: (){
-                          setState(() {
-                            open = false;
-                          });
-                          Navigator.pushNamed(context, EventRoomScheduleScreen.id);
-                        },
-                        child: Text(
-                          'Schedule'.toUpperCase(),
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 20.0,
+                          SizedBox(height: 20.0),
+                          GestureDetector(
+                            onTap: (){
+                              setState(() {
+                                open = false;
+                              });
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => EventRoomChatScreen(event: widget.event)));
+                            },
+                            child: Text(
+                              'Chatroom'.toUpperCase(),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 20.0,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      SizedBox(height: 20.0),
-                      GestureDetector(
-                        onTap: (){
-                          setState(() {
-                            open = false;
-                          });
-                          Navigator.pushNamed(context, EventRoomMapsScreen.id);
-                        },
-                        child: Text(
-                          'Maps'.toUpperCase(),
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 20.0,
+                          SizedBox(height: 20.0),
+                          GestureDetector(
+                            onTap: (){
+                              setState(() {
+                                open = false;
+                              });
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => EventRoomScheduleScreen(event: widget.event)));
+                            },
+                            child: Text(
+                              'Schedule'.toUpperCase(),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 20.0,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      SizedBox(height: 20.0),
-                      GestureDetector(
-                        onTap: (){
-                          setState(() {
-                            open = false;
-                          });
-                          Navigator.pushNamed(context, EventRoomFilesScreen.id);
-                        },
-                        child: Text(
-                          'Files'.toUpperCase(),
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 20.0,
+                          SizedBox(height: 20.0),
+                          GestureDetector(
+                            onTap: (){
+                              setState(() {
+                                open = false;
+                              });
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => EventRoomMapsScreen(event: widget.event)));
+                            },
+                            child: Text(
+                              'Maps'.toUpperCase(),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 20.0,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      SizedBox(height: 20.0),
-                      GestureDetector(
-                        onTap: (){
-                          setState(() {
-                            open = false;
-                          });
-                          Navigator.pushNamed(context, EventRoomNotesScreen.id);
-                        },
-                        child: Text(
-                          'Notes'.toUpperCase(),
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 20.0,
+                          SizedBox(height: 20.0),
+                          GestureDetector(
+                            onTap: (){
+                              setState(() {
+                                open = false;
+                              });
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => EventRoomFilesScreen(event: widget.event)));
+                            },
+                            child: Text(
+                              'Files'.toUpperCase(),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 20.0,
+                              ),
+                            ),
                           ),
-                        ),
+                          SizedBox(height: 20.0),
+                          GestureDetector(
+                            onTap: (){
+                              setState(() {
+                                open = false;
+                              });
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => EventRoomNotesScreen(event: widget.event)));
+                            },
+                            child: Text(
+                              'Notes'.toUpperCase(),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 20.0,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
