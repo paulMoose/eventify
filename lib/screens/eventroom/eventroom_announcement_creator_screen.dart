@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:eventify/models/guest_model.dart';
+import 'package:eventify/models/vendor_model.dart';
 import 'package:eventify/widgets/guests.dart';
-import 'package:eventify/widgets/transparent_rounded_input_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_sms/flutter_sms.dart';
@@ -9,6 +10,11 @@ import '../../constants.dart';
 import '../../credentials.dart';
 
 class AnnouncementCreatorScreen extends StatefulWidget {
+  final List<Guest> guestRecipients;
+  final List<Vendor> vendorRecipients;
+
+  AnnouncementCreatorScreen({this.guestRecipients, this.vendorRecipients});
+
   @override
   _AnnouncementCreatorScreenState createState() =>
       _AnnouncementCreatorScreenState();
@@ -22,21 +28,17 @@ class _AnnouncementCreatorScreenState extends State<AnnouncementCreatorScreen> {
 //    _sendSMS(message, [15148068277]); //57c left
   }
 
-  void _sendEmail() async {
-
-  }
+  void _sendEmail() async {}
 
   void _sendSMS(String message, List<int> recipents) async {
-    String baseURL =
-        'https://rest.nexmo.com/sms/json';
-    Response response =
-        await Dio().post(baseURL, data: {
-          "api_key": VONAGE_API_KEY,
-          "api_secret": VONAGE_SECRET,
-          "to": recipents[0],
-          "from": VONAGE_NUMBER,
-          "text": message
-        });
+    String baseURL = 'https://rest.nexmo.com/sms/json';
+    Response response = await Dio().post(baseURL, data: {
+      "api_key": VONAGE_API_KEY,
+      "api_secret": VONAGE_SECRET,
+      "to": recipents[0],
+      "from": VONAGE_NUMBER,
+      "text": message
+    });
     print(response);
   }
 
@@ -113,7 +115,11 @@ class _AnnouncementCreatorScreenState extends State<AnnouncementCreatorScreen> {
               ),
             ),
             Spacer(),
-            Guests(hasIcons: false, hasTopBar: false, small: true),
+            Guests(
+                hasIcons: false,
+                hasTopBar: false,
+                small: true,
+                guestList: widget.guestRecipients),
           ],
         ),
       ),

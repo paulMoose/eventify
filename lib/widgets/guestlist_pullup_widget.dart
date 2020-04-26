@@ -74,10 +74,16 @@ class _GuestlistPullupState extends State<GuestlistPullup> {
       if (!_hasSelected()) {
         return;
       }
+      List<Guest> recipients = List();
+      for(GuestStatus status in _guestsStatuses) {
+        if(status.isSelected) {
+          recipients.add(getGuestFromId(status.guestID));
+        }
+      }
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => AnnouncementCreatorScreen()));
+              builder: (context) => AnnouncementCreatorScreen(guestRecipients: recipients)));
     }
 
     return Container(

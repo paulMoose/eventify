@@ -1,3 +1,4 @@
+import 'package:eventify/constants.dart';
 import 'package:eventify/models/event_model.dart';
 import 'package:eventify/screens/eventroom/eventroom_home_screen.dart';
 import 'package:eventify/widgets/guests.dart';
@@ -112,16 +113,23 @@ class _EventPageScreenState extends State<EventPageScreen> {
                   ButtonBar(
                     children: <Widget>[
                       FlatButton(
-                        child: const Text('BUY TICKETS'),
+                        child: Text(
+                            widget.event.booked ? 'BOOKED' : 'BUY TICKETS',
+                            style: TextStyle(
+                                color: widget.event.booked ? CustomColors.aeroBlue : CustomColors.hookersGreen
+                            )
+                        ),
                         onPressed: () {
                           /* ... */
                         },
                       ),
                       FlatButton(
-                        child: const Text('ENTER'),
+                        child: Text('ENTER', style: TextStyle(color: widget.event.booked && widget.event.dateTime.date.isBefore(DateTime.now()) ? CustomColors.hookersGreen : CustomColors.aeroBlue)),
                         onPressed: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => EventRoomHomeScreen(event: widget.event)));
+                          if(widget.event.booked) {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => EventRoomHomeScreen(event: widget.event)));
+                          }
                         },
                       ),
                     ],
