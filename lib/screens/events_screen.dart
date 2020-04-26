@@ -15,46 +15,6 @@ class EventsScreen extends StatefulWidget {
 class _EventsScreenState extends State<EventsScreen> {
   @override
   Widget build(BuildContext context) {
-
-    List<Tuple2<Event, EventDateTime>> eventList = [
-      Tuple2<Event, EventDateTime>(
-          Event(
-              name: 'Newbies\' Comedy Club',
-              location: 'Little Theatre'
-          ),
-          EventDateTime(
-              date: DateTime.utc(2020, 4, 25)
-          )
-      ),
-      Tuple2<Event, EventDateTime>(
-          Event(
-              name: 'Party',
-              location: 'here and here'
-          ),
-          EventDateTime(
-              date: DateTime.utc(2020, 5, 4)
-          )
-      ),
-      Tuple2<Event, EventDateTime>(
-          Event(
-              name: 'ComicCon',
-              location: 'there and here'
-          ),
-          EventDateTime(
-              date: DateTime.utc(2020, 5, 17)
-          )
-      ),
-      Tuple2<Event, EventDateTime>(
-          Event(
-              name: 'Convention',
-              location: 'there and there'
-          ),
-          EventDateTime(
-              date: DateTime.utc(2020, 6, 20)
-          )
-      ),
-    ];
-
     return Scaffold(
       backgroundColor: CustomColors.aeroBlue,
       body: Stack(
@@ -86,12 +46,7 @@ class _EventsScreenState extends State<EventsScreen> {
                           child: Column(
                             children: <Widget>[
                               for(Tuple2<Event, EventDateTime> event in eventList)
-                                EventCardWidget(
-                                  event: event.item1,
-                                  dateTime: event.item2,
-                                  canView: true,
-                                  canEnter: event.item2.date.isBefore(DateTime.now()) ? true : false,
-                                ),
+                                getBookedEventWidget(event)
                             ],
                           )
                       ),
@@ -106,4 +61,16 @@ class _EventsScreenState extends State<EventsScreen> {
       ),
     );
   }
+}
+
+Widget getBookedEventWidget(Tuple2<Event, EventDateTime> event) {
+  if(event.item1.booked) {
+    return EventCardWidget(
+      event: event.item1,
+      dateTime: event.item2,
+      canView: true,
+      canEnter: event.item2.date.isBefore(DateTime.now()) ? true : false,
+    );
+  }
+  return SizedBox(height: 0.0);
 }
