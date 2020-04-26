@@ -1,13 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:tuple/tuple.dart';
 
 import '../constants.dart';
 
 class Event {
   String name;
   String location;
+  EventDateTime dateTime;
   String description;
   String code;
   bool booked = true;
@@ -15,7 +15,10 @@ class Event {
 //  TimeOfDay endDateTime;
 //  String imageUrl;
 
-  Event({this.name, this.location, this.booked = true}){
+  Event({this.name, this.location, this.dateTime, this.booked = true}){
+    if (this.dateTime == null) {
+      dateTime = EventDateTime(date: DateTime.now());
+    }
     this.code = '';
     int seed = 0;
     for(var i = 0; i < this.name.length; i ++) {
@@ -106,61 +109,49 @@ List<Widget> placesList = [
   ),
 ];
 
-List<Tuple2<Event, EventDateTime>> eventList = [
-  Tuple2<Event, EventDateTime>(
-    Event(
-      name: 'Red Wedding',
-      location: 'Riverrun'
-    ),
-    EventDateTime(
-      date: DateTime.utc(2020, 4, 25)
+List<Event> eventList = [
+  Event(
+    name: 'Red Wedding',
+    location: 'Riverrun',
+    dateTime: EventDateTime(
+        date: DateTime.utc(2020, 4, 25)
     )
   ),
-  Tuple2<Event, EventDateTime>(
-    Event(
-      name: 'Sombra\'s Party',
-      location: 'Blizzard World'
-    ),
-    EventDateTime(
+  Event(
+    name: 'Sombra\'s Party',
+    location: 'Blizzard World',
+    dateTime: EventDateTime(
       date: DateTime.utc(2020, 4, 26)
     )
   ),
-  Tuple2<Event, EventDateTime>(
-    Event(
+  Event(
       name: 'Newbies\' Comedy Club',
       location: 'Little Theatre',
+      dateTime: EventDateTime(
+          date: DateTime.utc(2020, 5, 8)
+      ),
       booked: false
-    ),
-    EventDateTime(
-      date: DateTime.utc(2020, 5, 8)
-    )
   ),
-  Tuple2<Event, EventDateTime>(
-    Event(
+  Event(
       name: 'DreamHack',
-      location: 'Nimbus Stadium'
-    ),
-    EventDateTime(
-      date: DateTime.utc(2020, 5, 17)
-    )
+      location: 'Nimbus Stadium',
+      dateTime: EventDateTime(
+          date: DateTime.utc(2020, 5, 17)
+      )
   ),
-  Tuple2<Event, EventDateTime>(
-    Event(
+  Event(
       name: 'Smooth Jazz Live',
-      location: 'Corona Theatre'
-    ),
-    EventDateTime(
-      date: DateTime.utc(2020, 5, 21)
-    )
+      location: 'Corona Theatre',
+      dateTime: EventDateTime(
+          date: DateTime.utc(2020, 5, 21)
+      )
   ),
-  Tuple2<Event, EventDateTime>(
-    Event(
+  Event(
       name: 'Sweetness from the South',
       location: 'South Park',
-        booked: false
-    ),
-    EventDateTime(
-      date: DateTime.utc(2020, 6, 6)
-    )
+      dateTime: EventDateTime(
+          date: DateTime.utc(2020, 6, 6)
+      ),
+      booked: false
   ),
 ];
