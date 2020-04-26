@@ -1,4 +1,5 @@
 import 'package:eventify/models/event_model.dart';
+import 'package:eventify/screens/eventroom/eventroom_home_screen.dart';
 import 'package:eventify/widgets/guests.dart';
 import 'package:eventify/widgets/vendors.dart';
 import 'package:flutter/material.dart';
@@ -114,9 +115,10 @@ class _EventPageScreenState extends State<EventPageScreen> {
                         },
                       ),
                       FlatButton(
-                        child: const Text('LISTEN'),
+                        child: const Text('ENTER'),
                         onPressed: () {
-                          /* ... */
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => EventRoomHomeScreen(event: widget.event)));
                         },
                       ),
                     ],

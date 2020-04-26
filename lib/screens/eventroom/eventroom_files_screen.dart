@@ -1,8 +1,15 @@
+import 'package:eventify/models/event_model.dart';
 import 'package:eventify/widgets/eventroom/eventroom_menu_widget.dart';
 import 'package:flutter/material.dart';
 
 class EventRoomFilesScreen extends StatefulWidget {
   static String id = 'eventroom_files_screen';
+
+  EventRoomFilesScreen({
+    @required this.event,
+  });
+
+  final Event event;
 
   @override
   _EventRoomFilesScreenState createState() => _EventRoomFilesScreenState();
@@ -32,7 +39,7 @@ class _EventRoomFilesScreenState extends State<EventRoomFilesScreen> {
               ),
             ],
           ),
-          EventRoomMenuWidget(),
+          EventRoomMenuWidget(event: widget.event),
         ],
       ),
     );

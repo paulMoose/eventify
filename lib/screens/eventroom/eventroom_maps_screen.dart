@@ -1,8 +1,15 @@
+import 'package:eventify/models/event_model.dart';
 import 'package:eventify/widgets/eventroom/eventroom_menu_widget.dart';
 import 'package:flutter/material.dart';
 
 class EventRoomMapsScreen extends StatefulWidget {
   static String id = 'eventroom_maps_screen';
+
+  EventRoomMapsScreen({
+    @required this.event,
+  });
+
+  final Event event;
 
   @override
   _EventRoomMapsScreenState createState() => _EventRoomMapsScreenState();
@@ -32,7 +39,7 @@ class _EventRoomMapsScreenState extends State<EventRoomMapsScreen> {
               ),
             ],
           ),
-          EventRoomMenuWidget(),
+          EventRoomMenuWidget(event: widget.event),
         ],
       ),
     );
