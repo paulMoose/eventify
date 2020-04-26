@@ -46,8 +46,6 @@ final Guest jason = Guest(
   role: 'Best Man',
   name: 'Jason',
   imageUrl: 'images/people/Jason.jpg',
-  mode: CommunicationMode.EMAIL,
-  info: 'l.joannaxy@gmail.com'
 );
 final Guest hodor = Guest(
   id: 4,
