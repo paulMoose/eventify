@@ -3,6 +3,7 @@ import 'package:eventify/models/event_model.dart';
 import 'package:eventify/models/guest_model.dart';
 import 'package:eventify/models/message_model.dart';
 import 'package:eventify/models/vendor_model.dart';
+import 'package:eventify/screens/eventpage_screen.dart';
 import 'package:eventify/widgets/guests.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -58,8 +59,15 @@ class _AnnouncementCreatorScreenState extends State<AnnouncementCreatorScreen> {
           break;
       }
     }
-    _sendEmail(guestEmail);
+    if(guestEmail.length > 0) {
+      _sendEmail(guestEmail);
+    }
 //    _sendSMS(msg.message, guestNumber); //57c left
+
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => EventPageScreen(event: widget.event)));
   }
 
   void _sendEmail(List<String> recipients) async {
