@@ -6,6 +6,8 @@ import 'package:eventify/widgets/vendors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'home_screen.dart';
+
 class EventPageScreen extends StatefulWidget {
   static String id = 'eventpage_screen';
 
@@ -50,6 +52,46 @@ class _EventPageScreenState extends State<EventPageScreen> {
                         child: Image(
                             image: AssetImage('images/event1.jpg'),
                             fit: BoxFit.cover)),
+                  ),
+                  Positioned(
+                    right: 20.0,
+                    top: 20.0,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: <Widget>[
+                        Text(
+                          "2020-05-22",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 35.0,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 1.2,
+                          ),
+                        ),
+                        Text(
+                          "5:30 PM - 3:00 AM",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white70,
+                            fontSize: 20.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  Row(
+                    children: <Widget>[
+                      IconButton(
+                        icon: Icon(Icons.home, size: 35),
+                        tooltip: 'Home',
+                        color: Colors.white,
+                        onPressed: () {
+                          Navigator.pushNamed(context, HomeScreen.id);
+                        },
+                      ),
+                    ],
                   ),
                   Positioned(
                     left: 20.0,
@@ -116,19 +158,28 @@ class _EventPageScreenState extends State<EventPageScreen> {
                         child: Text(
                             widget.event.booked ? 'BOOKED' : 'BUY TICKETS',
                             style: TextStyle(
-                                color: widget.event.booked ? CustomColors.aeroBlue : CustomColors.hookersGreen
-                            )
-                        ),
+                                color: widget.event.booked
+                                    ? CustomColors.aeroBlue
+                                    : CustomColors.hookersGreen)),
                         onPressed: () {
                           /* ... */
                         },
                       ),
                       FlatButton(
-                        child: Text('ENTER', style: TextStyle(color: widget.event.booked && widget.event.dateTime.date.isBefore(DateTime.now()) ? CustomColors.hookersGreen : CustomColors.aeroBlue)),
+                        child: Text('ENTER',
+                            style: TextStyle(
+                                color: widget.event.booked &&
+                                        widget.event.dateTime.date
+                                            .isBefore(DateTime.now())
+                                    ? CustomColors.hookersGreen
+                                    : CustomColors.aeroBlue)),
                         onPressed: () {
-                          if(widget.event.booked) {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) => EventRoomHomeScreen(event: widget.event)));
+                          if (widget.event.booked) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => EventRoomHomeScreen(
+                                        event: widget.event)));
                           }
                         },
                       ),
