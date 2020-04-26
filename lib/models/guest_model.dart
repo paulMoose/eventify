@@ -6,6 +6,7 @@ class Guest {
   final String name;
   final String imageUrl;
   final CommunicationMode mode;
+  final String info;
 
   Guest({
     this.id,
@@ -13,15 +14,26 @@ class Guest {
     this.name,
     this.imageUrl,
     this.mode = CommunicationMode.APP,
+    this.info = ''
   });
 }
 
 // GuestS
+final Guest joanna = Guest(
+  id: 0,
+  role: 'Friend',
+  name: 'Joanna',
+  imageUrl: 'images/avatar2.png',
+  mode: CommunicationMode.EMAIL,
+  info: 'l.joanna19@hotmail.com'
+);
 final Guest emilia = Guest(
   id: 1,
   role: 'Bride',
   name: 'Emilia',
   imageUrl: 'images/people/Emilia.jpg',
+  mode: CommunicationMode.SMS,
+  info: '15148068277'
 );
 final Guest peter = Guest(
   id: 2,
@@ -34,6 +46,8 @@ final Guest jason = Guest(
   role: 'Best Man',
   name: 'Jason',
   imageUrl: 'images/people/Jason.jpg',
+  mode: CommunicationMode.EMAIL,
+  info: 'l.joannaxy@gmail.com'
 );
 final Guest hodor = Guest(
   id: 4,
@@ -61,7 +75,7 @@ final Guest stark = Guest(
 );
 
 // FAVORITE CONTACTS
-List<Guest> guests = [emilia, peter, jason, hodor, maisie, john, stark];
+List<Guest> guests = [joanna, emilia, peter, jason, hodor, maisie, john, stark];
 
 Guest getGuestFromId(int id) {
   for(Guest guest in guests) {

@@ -1,3 +1,4 @@
+import 'package:eventify/models/event_model.dart';
 import 'package:eventify/models/guest_model.dart';
 import 'package:eventify/screens/eventroom/eventroom_announcement_creator_screen.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +7,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../constants.dart';
 
 class GuestlistPullup extends StatefulWidget {
+  final Event event;
+
   const GuestlistPullup({
-    Key key,
+    Key key, this.event
   }) : super(key: key);
 
   @override
@@ -83,7 +86,7 @@ class _GuestlistPullupState extends State<GuestlistPullup> {
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => AnnouncementCreatorScreen(guestRecipients: recipients)));
+              builder: (context) => AnnouncementCreatorScreen(event: widget.event, guestRecipients: recipients)));
     }
 
     return Container(

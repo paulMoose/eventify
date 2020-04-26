@@ -1,3 +1,4 @@
+import 'package:eventify/models/event_model.dart';
 import 'package:eventify/models/guest_model.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -8,6 +9,7 @@ import 'guestlist_pullup_widget.dart';
 class Guests extends StatelessWidget {
 
   Guests({
+    @required this.event,
     this.hasTopBar = true,
     this.title = 'Guests',
     this.hasIcons = true,
@@ -19,6 +21,7 @@ class Guests extends StatelessWidget {
     }
   }
 
+  final Event event;
   final bool hasTopBar;
   final bool hasIcons;
   final bool small;
@@ -31,7 +34,7 @@ class Guests extends StatelessWidget {
         elevation: 20,
         isScrollControlled: true,
         builder: (BuildContext context) {
-          return GuestlistPullup();
+          return GuestlistPullup(event: event);
         });
   }
 

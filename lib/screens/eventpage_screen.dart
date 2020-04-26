@@ -90,7 +90,7 @@ class _EventPageScreenState extends State<EventPageScreen> {
               ),
             ],
           ),
-          Guests(),
+          Guests(event: widget.event),
           Vendors(),
           Center(
             child: Card(
