@@ -1,3 +1,4 @@
+import 'package:eventify/constants.dart';
 import 'package:eventify/screens/entry/login_screen.dart';
 import 'package:eventify/screens/event_tasks/daily_task_screen.dart';
 import 'package:eventify/screens/event_tasks/years_calendar_screen.dart';
@@ -35,15 +36,23 @@ class _NavigationMenuWidgetState extends State<NavigationMenuWidget> {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         return Transform.translate(
-          offset: open ? Offset(0.0, 0.0) : Offset(0.0, constraints.maxHeight/2 - 60),
+          offset: open ? Offset(0.0, 0.0) : Offset(0.0, MediaQuery.of(context).size.height/2 - 60),
           child: Stack(
             children: <Widget>[
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
-                  color: Color(0xFF4E6E5D),
                   height: MediaQuery.of(context).size.height/2,
                   width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    color: CustomColors.deepSpaceSparkle,
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black.withOpacity(0.5),
+                          blurRadius: 5.0,
+                      )
+                    ]
+                  ),
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20.0),
                     child: Column(
@@ -230,10 +239,16 @@ class _NavigationMenuWidgetState extends State<NavigationMenuWidget> {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.5),
+                          blurRadius: 5.0,
+                        )
+                      ]
                     ),
                     child: Icon(
                       open ? Icons.close : Icons.add,
-                      color: Color(0xFF272D2D),
+                      color: CustomColors.deepSpaceSparkle,
                       size: 30.0,
                     ),
                   ),

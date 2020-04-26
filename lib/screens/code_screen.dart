@@ -1,3 +1,4 @@
+import 'package:eventify/constants.dart';
 import 'package:eventify/screens/eventpage_screen.dart';
 import 'package:eventify/widgets/navigation_menu_widget.dart';
 import 'package:eventify/widgets/transparent_rounded_input_widget.dart';
@@ -15,7 +16,7 @@ class _CodeScreenState extends State<CodeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF272D2D),
+      backgroundColor: CustomColors.aeroBlue,
       body: Stack(
         children: <Widget>[
           Padding(
@@ -29,7 +30,7 @@ class _CodeScreenState extends State<CodeScreen> {
                   child: Text(
                     'Enter event code',
                     style: TextStyle(
-                        color: Color(0xFFF7FFF6),
+                        color: CustomColors.charlestonGreen,
                         fontWeight: FontWeight.w900,
                         fontSize: 30.0
                     ),
@@ -42,9 +43,9 @@ class _CodeScreenState extends State<CodeScreen> {
                 RoundedButtonWidget(
                   title: 'SEARCH',
                   onPressed: () {
-                    Navigator.pushNamed(context, EventPageScreen.id);
+//                    Navigator.pushNamed(context, EventPageScreen.id);
                   },
-                  backgroundColor: Color(0xFF0CCE6B),
+                  backgroundColor: CustomColors.hookersGreen,
                   textColor: Color(0xFFF7FFF6),
                 ),
 

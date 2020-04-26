@@ -1,3 +1,4 @@
+import 'package:eventify/constants.dart';
 import 'package:eventify/screens/event_tasks/daily_task_screen.dart';
 import 'package:eventify/screens/event_tasks/years_calendar_screen.dart';
 import 'package:eventify/widgets/calendar/elements/month_view_widget.dart';
@@ -51,8 +52,8 @@ class _WeeksCalendarScreenState extends State<WeeksCalendarScreen> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,
-        primaryColor: Color(0xFF4E6E5D),
-        accentColor: Color(0xFF272D2D),
+        primaryColor: CustomColors.hookersGreen,
+        accentColor: CustomColors.charlestonGreen,
       ),
       home: DefaultTabController(
         length: 3,
@@ -121,7 +122,7 @@ class _WeeksCalendarScreenState extends State<WeeksCalendarScreen> {
             ),
           ),
           body: Container(
-            color: Color(0xFFC3F1CF),
+            color: CustomColors.aeroBlue,
             height: MediaQuery.of(context).size.height,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

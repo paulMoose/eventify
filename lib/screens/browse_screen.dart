@@ -1,3 +1,4 @@
+import 'package:eventify/constants.dart';
 import 'package:eventify/models/event_model.dart';
 import 'package:eventify/screens/eventpage_screen.dart';
 import 'package:eventify/widgets/event_card_widget.dart';
@@ -75,7 +76,8 @@ class _BrowseScreenState extends State<BrowseScreen> {
     ];
 
     return Scaffold(
-      backgroundColor: Color(0xFF272D2D),
+      backgroundColor: CustomColors.aeroBlue,
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: <Widget>[
           Padding(
@@ -95,7 +97,7 @@ class _BrowseScreenState extends State<BrowseScreen> {
                         child: Text(
                           'Popular near you',
                           style: TextStyle(
-                              color: Color(0xFFF7FFF6),
+                              color: CustomColors.charlestonGreen,
                               fontWeight: FontWeight.w900,
                               fontSize: 30.0
                           ),

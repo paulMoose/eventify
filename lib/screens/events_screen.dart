@@ -1,3 +1,4 @@
+import 'package:eventify/constants.dart';
 import 'package:eventify/models/event_model.dart';
 import 'package:eventify/widgets/event_card_widget.dart';
 import 'package:eventify/widgets/navigation_menu_widget.dart';
@@ -55,7 +56,7 @@ class _EventsScreenState extends State<EventsScreen> {
     ];
 
     return Scaffold(
-      backgroundColor: Color(0xFF272D2D),
+      backgroundColor: CustomColors.aeroBlue,
       body: Stack(
         children: <Widget>[
           Padding(
@@ -72,7 +73,7 @@ class _EventsScreenState extends State<EventsScreen> {
                         child: Text(
                           'My events',
                           style: TextStyle(
-                              color: Color(0xFFF7FFF6),
+                              color: CustomColors.charlestonGreen,
                               fontWeight: FontWeight.w900,
                               fontSize: 30.0
                           ),

@@ -3,6 +3,7 @@ import 'package:eventify/screens/code_screen.dart';
 import 'package:eventify/screens/create_screen.dart';
 import 'package:eventify/widgets/navigation_menu_widget.dart';
 import 'package:eventify/widgets/rounded_button_widget.dart';
+import 'package:eventify/constants.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -16,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF272D2D),
+      backgroundColor: Colors.white,
       body: Stack(
         children: <Widget>[
 //                  Color(0xFF272D2D),
@@ -32,24 +33,24 @@ class _HomeScreenState extends State<HomeScreen> {
                   onPressed: () {
                     Navigator.pushNamed(context, CreateScreen.id);
                   },
-                  backgroundColor: Color(0xFF0CCE6B),
-                  textColor: Color(0xFFF7FFF6),
+                  backgroundColor: CustomColors.hookersGreen,
+                  textColor: Colors.white,
                 ),
                 RoundedButtonWidget(
                   title: 'Browse events',
                   onPressed: () {
                     Navigator.pushNamed(context, BrowseScreen.id);
                   },
-                  backgroundColor: Color(0xFF0CCE6B),
-                  textColor: Color(0xFFF7FFF6),
+                  backgroundColor: CustomColors.hookersGreen,
+                  textColor: Colors.white,
                 ),
                 RoundedButtonWidget(
                   title: 'Enter event code',
                   onPressed: () {
                     Navigator.pushNamed(context, CodeScreen.id);
                   },
-                  backgroundColor: Color(0xFF0CCE6B),
-                  textColor: Color(0xFFF7FFF6),
+                  backgroundColor: CustomColors.hookersGreen,
+                  textColor: Colors.white,
                 ),
               ],
             ),
