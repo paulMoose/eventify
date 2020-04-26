@@ -1,9 +1,12 @@
+import 'package:dio/dio.dart';
 import 'package:eventify/widgets/guests.dart';
 import 'package:eventify/widgets/transparent_rounded_input_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_sms/flutter_sms.dart';
 
 import '../../constants.dart';
+import '../../credentials.dart';
 
 class AnnouncementCreatorScreen extends StatefulWidget {
   @override
@@ -12,6 +15,31 @@ class AnnouncementCreatorScreen extends StatefulWidget {
 }
 
 class _AnnouncementCreatorScreenState extends State<AnnouncementCreatorScreen> {
+  String subject;
+  String message;
+
+  _sendMessage() {
+//    _sendSMS(message, [15148068277]); //57c left
+  }
+
+  void _sendEmail() async {
+
+  }
+
+  void _sendSMS(String message, List<int> recipents) async {
+    String baseURL =
+        'https://rest.nexmo.com/sms/json';
+    Response response =
+        await Dio().post(baseURL, data: {
+          "api_key": VONAGE_API_KEY,
+          "api_secret": VONAGE_SECRET,
+          "to": recipents[0],
+          "from": VONAGE_NUMBER,
+          "text": message
+        });
+    print(response);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +53,9 @@ class _AnnouncementCreatorScreenState extends State<AnnouncementCreatorScreen> {
           IconButton(
             icon: FaIcon(FontAwesomeIcons.paperPlane, size: 15),
             tooltip: 'Send Announcement',
-            onPressed: () {},
+            onPressed: () {
+              _sendMessage();
+            },
           ),
         ],
       ),
@@ -51,6 +81,11 @@ class _AnnouncementCreatorScreenState extends State<AnnouncementCreatorScreen> {
                       decoration: InputDecoration(
                         hintText: "Subject",
                       ),
+                      onChanged: (value) {
+                        setState(() {
+                          subject = value;
+                        });
+                      },
                     ),
                   ),
                   Container(
@@ -67,6 +102,11 @@ class _AnnouncementCreatorScreenState extends State<AnnouncementCreatorScreen> {
                           borderSide: BorderSide(color: Colors.white, width: 0),
                         ),
                       ),
+                      onChanged: (value) {
+                        setState(() {
+                          message = value;
+                        });
+                      },
                     ),
                   ),
                 ],
