@@ -7,21 +7,21 @@ class TransparentRoundedInputWidget extends StatelessWidget {
       this.borderColor = Colors.white54,
       this.obscureText = false,
       this.autofocus = false,
-      this.onChaged});
+      this.onChanged});
 
   final String hintText;
   final Color fillColor;
   final Color borderColor;
   final bool obscureText;
   final bool autofocus;
-  final Function onChaged;
+  final Function onChanged;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.0),
       child: TextFormField(
-        onChanged: onChaged,
+        onChanged: onChanged,
         autofocus: this.autofocus,
         obscureText: this.obscureText,
         decoration: InputDecoration(

@@ -5,7 +5,6 @@ import 'package:eventify/widgets/event_card_widget.dart';
 import 'package:eventify/widgets/navigation_menu_widget.dart';
 import 'package:eventify/widgets/transparent_rounded_input_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:tuple/tuple.dart';
 
 class BrowseScreen extends StatefulWidget {
   static String id = 'browse_screen';
@@ -52,15 +51,14 @@ class _BrowseScreenState extends State<BrowseScreen> {
                       child: SingleChildScrollView(
                           child: Column(
                             children: <Widget>[
-                              for(Tuple2<Event, EventDateTime> event in eventList)
+                              for(Event event in eventList)
                                 GestureDetector(
                                   onTap: (){
                                     Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) => EventPageScreen(event: event.item1)));
+                                    MaterialPageRoute(builder: (context) => EventPageScreen(event: event)));
                                   },
                                   child: EventCardWidget(
-                                    event: event.item1,
-                                    dateTime: event.item2,
+                                    event: event,
                                   ),
                                 ),
                             ],

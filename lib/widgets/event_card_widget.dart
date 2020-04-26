@@ -7,10 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class EventCardWidget extends StatelessWidget {
-  const EventCardWidget({this.event, this.dateTime, this.canView = false, this.canEnter = false});
+  const EventCardWidget({this.event, this.canView = false, this.canEnter = false});
 
   final Event event;
-  final EventDateTime dateTime;
   final bool canView;
   final bool canEnter;
 
@@ -39,8 +38,8 @@ class EventCardWidget extends StatelessWidget {
                 ),
               ),
               DateWidget(
-                  month: monthName.format(dateTime.date),
-                  day: dateTime.date.day.toString(),
+                  month: monthName.format(event.dateTime.date),
+                  day: event.dateTime.date.day.toString(),
               ),
               Padding(
                 padding: EdgeInsets.only(top: 13.0, left: 5.0),

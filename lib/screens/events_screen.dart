@@ -3,7 +3,6 @@ import 'package:eventify/models/event_model.dart';
 import 'package:eventify/widgets/event_card_widget.dart';
 import 'package:eventify/widgets/navigation_menu_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:tuple/tuple.dart';
 
 class EventsScreen extends StatefulWidget {
   static String id = 'events_screen';
@@ -45,7 +44,7 @@ class _EventsScreenState extends State<EventsScreen> {
                       child: SingleChildScrollView(
                           child: Column(
                             children: <Widget>[
-                              for(Tuple2<Event, EventDateTime> event in eventList)
+                              for(Event event in eventList)
                                 getBookedEventWidget(event)
                             ],
                           )
@@ -63,13 +62,12 @@ class _EventsScreenState extends State<EventsScreen> {
   }
 }
 
-Widget getBookedEventWidget(Tuple2<Event, EventDateTime> event) {
-  if(event.item1.booked) {
+Widget getBookedEventWidget(Event event) {
+  if(event.booked) {
     return EventCardWidget(
-      event: event.item1,
-      dateTime: event.item2,
+      event: event,
       canView: true,
-      canEnter: event.item2.date.isBefore(DateTime.now()) ? true : false,
+      canEnter: event.dateTime.date.isBefore(DateTime.now()) ? true : false,
     );
   }
   return SizedBox(height: 0.0);
