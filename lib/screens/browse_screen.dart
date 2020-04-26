@@ -18,63 +18,6 @@ class _BrowseScreenState extends State<BrowseScreen> {
   @override
   Widget build(BuildContext context) {
 
-    List<Tuple2<Event, EventDateTime>> eventList = [
-      Tuple2<Event, EventDateTime>(
-        Event(
-            name: 'Event',
-            location: 'here and there'
-        ),
-        EventDateTime(
-          date: DateTime.utc(2020, 4, 26)
-        )
-      ),
-      Tuple2<Event, EventDateTime>(
-          Event(
-              name: 'Party',
-              location: 'here and here'
-          ),
-          EventDateTime(
-              date: DateTime.utc(2020, 5, 4)
-          )
-      ),
-      Tuple2<Event, EventDateTime>(
-          Event(
-              name: 'ComicCon',
-              location: 'there and here'
-          ),
-          EventDateTime(
-              date: DateTime.utc(2020, 5, 17)
-          )
-      ),
-      Tuple2<Event, EventDateTime>(
-          Event(
-              name: 'Convention',
-              location: 'there and there'
-          ),
-          EventDateTime(
-              date: DateTime.utc(2020, 6, 20)
-          )
-      ),
-      Tuple2<Event, EventDateTime>(
-          Event(
-              name: 'Smooth Jazz Live',
-              location: 'Corona Theatre'
-          ),
-          EventDateTime(
-              date: DateTime.utc(2020, 4, 26)
-          )
-      ),
-      Tuple2<Event, EventDateTime>(
-          Event(
-              name: 'Sweetness from the South',
-              location: 'South Park'
-          ),
-          EventDateTime(
-              date: DateTime.utc(2020, 4, 26)
-          )
-      ),
-    ];
-
     return Scaffold(
       backgroundColor: CustomColors.aeroBlue,
       resizeToAvoidBottomInset: false,
