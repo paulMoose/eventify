@@ -61,8 +61,29 @@ class _CreateScreenState extends State<CreateScreen> {
     ];
   }
 
-  void _changePage(newPageIndex) {
-    if (newPageIndex == _pages.length) {
+  _alertDialog(context, missingValue) {
+    return showDialog(context: context, builder: (context) {
+      return AlertDialog(
+        title: Text("Form not completed"),
+        content: Text("Please go back and enter an $missingValue"),
+        actions: <Widget>[
+          MaterialButton(
+            child: Text("OK"),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          )
+        ],
+      );
+    });
+  }
+
+  void _changePage(context, newPageIndex) {
+    if(newPageIndex == _pages.length && (eventName == null || location == null)) {
+      String missing = eventName == null? 'event name': 'event location';
+      _alertDialog(context, missing);
+    }
+    if (newPageIndex == _pages.length && eventName != null && location != null) {
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -116,7 +137,7 @@ class _CreateScreenState extends State<CreateScreen> {
                       ),
                       tooltip: 'Go Back',
                       onPressed: () {
-                        _changePage(_currentPage - 1);
+                        _changePage(context, _currentPage - 1);
                       },
                     ),
                     Text(
@@ -153,7 +174,7 @@ class _CreateScreenState extends State<CreateScreen> {
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                     child: MaterialButton(
                       onPressed: () {
-                        _changePage(_currentPage + 1);
+                        _changePage(context, _currentPage + 1);
                       },
                       minWidth: 200.0,
                       height: 42.0,
