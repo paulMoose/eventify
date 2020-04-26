@@ -105,21 +105,8 @@ class _EventPageScreenState extends State<EventPageScreen> {
                     child: Text(
                         "The Red Wedding is a massacre at the wedding feast of Edmure Tully, Lord of Riverrun, and Roslin Frey at the Twins in 299 AC during the War of the Five Kings. The King in the North, Robb Stark, his mother Catelyn, and most of his three thousand five hundred soldiers are"),
                   ),
-                  ButtonBar(
-                    children: <Widget>[
-                      FlatButton(
-                        child: const Text('BUY TICKETS'),
-                        onPressed: () {
-                          /* ... */
-                        },
-                      ),
-                      FlatButton(
-                        child: const Text('LISTEN'),
-                        onPressed: () {
-                          /* ... */
-                        },
-                      ),
-                    ],
+                  SizedBox(
+                    height: 24.0,
                   ),
                 ],
               ),

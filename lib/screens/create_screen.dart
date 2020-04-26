@@ -85,8 +85,8 @@ class _CreateScreenState extends State<CreateScreen> {
                         : Colors.transparent,
                   ],
                   stops: [
-                    0.5,
-                    0.5
+                    0.7,
+                    0.7
                   ]),
             ),
             child: Column(
