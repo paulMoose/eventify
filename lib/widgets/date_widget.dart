@@ -1,3 +1,4 @@
+import 'package:eventify/constants.dart';
 import 'package:flutter/material.dart';
 
 class DateWidget extends StatelessWidget {
@@ -14,8 +15,8 @@ class DateWidget extends StatelessWidget {
           width: 60.0,
           height: 60.0,
           decoration: BoxDecoration(
-            border: Border.all(color: Color(0xFF272D2D)),
-            color: Color(0xFF272D2D)
+            border: Border.all(color: CustomColors.charlestonGreen),
+            color: CustomColors.charlestonGreen
           ),
           child: Column(
             children: <Widget>[
@@ -26,7 +27,7 @@ class DateWidget extends StatelessWidget {
                   child: Text(
                     this.month.toUpperCase(),
                     style: TextStyle(
-                      color: Color(0xFF272D2D),
+                      color: CustomColors.charlestonGreen,
                       fontWeight: FontWeight.w900,
                     ),
                   ),
@@ -36,7 +37,7 @@ class DateWidget extends StatelessWidget {
               Text(
                 this.day,
                 style: TextStyle(
-                  color: Color(0xFFFFFFFF),
+                  color: Colors.white,
                   fontWeight: FontWeight.w900,
                   fontSize: 30.0,
                 ),

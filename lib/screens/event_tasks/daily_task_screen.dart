@@ -1,3 +1,4 @@
+import 'package:eventify/constants.dart';
 import 'package:eventify/widgets/event_tasks/tab_bar_task_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -16,8 +17,8 @@ class _DailyTaskScreen extends State<DailyTaskScreen> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,
-        primaryColor: Color(0xFF4E6E5D),
-        accentColor: Color(0xFF272D2D),
+        primaryColor: CustomColors.deepSpaceSparkle,
+        accentColor: CustomColors.charlestonGreen,
       ),
       home: TabBarTaskWidget(),
     );

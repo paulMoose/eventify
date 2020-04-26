@@ -1,3 +1,4 @@
+import 'package:eventify/constants.dart';
 import 'package:eventify/models/event_model.dart';
 import 'package:eventify/screens/eventpage_screen.dart';
 import 'package:eventify/screens/eventroom/eventroom_home_screen.dart';
@@ -21,7 +22,7 @@ class EventCardWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 10.0),
       child: Material(
-        color: Color(0xFFF7FFF6),
+        color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
         child: Container(
           height: 100,
@@ -34,7 +35,7 @@ class EventCardWidget extends StatelessWidget {
                     topLeft: Radius.circular(10.0),
                     bottomLeft: Radius.circular(10.0),
                   ),
-                  color: Color(0xFFC3F1CF),
+                  color: CustomColors.hookersGreen,
                 ),
               ),
               DateWidget(
@@ -51,7 +52,7 @@ class EventCardWidget extends StatelessWidget {
                       Text(
                         event.name,
                         style: TextStyle(
-                          color: Color(0xFF272D2D),
+                          color: CustomColors.charlestonGreen,
                           fontWeight: FontWeight.w700,
                           fontSize: 20.0,
                         ),
@@ -74,7 +75,13 @@ class EventCardWidget extends StatelessWidget {
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 12.0, right: 20.0),
-                                  child: Text("VIEW", style: TextStyle(color: this.canView ? Color(0xFF0CCE6B) : Color(0xFFC3F1CF))),
+                                  child: Text(
+                                    "VIEW",
+                                    style: TextStyle(
+                                      color: this.canView ? CustomColors.hookersGreen : CustomColors.aeroBlue,
+                                      fontWeight: FontWeight.w900
+                                    )
+                                  ),
                                 ),
                               ),
                               GestureDetector(
@@ -86,7 +93,13 @@ class EventCardWidget extends StatelessWidget {
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 12.0, right: 20.0),
-                                  child: Text("ENTER", style: TextStyle(color: this.canEnter ? Color(0xFF0CCE6B) : Color(0xFFC3F1CF))),
+                                  child: Text(
+                                      "ENTER",
+                                      style: TextStyle(
+                                          color: this.canEnter ? CustomColors.hookersGreen : CustomColors.aeroBlue,
+                                          fontWeight: FontWeight.w900
+                                      )
+                                  ),
                                 ),
                               ),
                             ],

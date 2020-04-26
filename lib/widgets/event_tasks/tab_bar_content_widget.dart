@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:core';
 
+import 'package:eventify/constants.dart';
 import 'package:eventify/widgets/event_tasks/task_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -12,9 +13,9 @@ class TabBarContentWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var tasks = <Widget>[];
     var length = Random().nextInt(6);
-    var color1 = Color(0xFF395C6B);
-    var color2 = Color(0xFFC3F1CF);
-    var fontColor = Color(0xFF272D2D);
+    var color1 = CustomColors.bananaMania;
+    var color2 = CustomColors.aeroBlue;
+    var fontColor = CustomColors.charlestonGreen;
     var white = Colors.white;
     for (var i = 0; i < length; i++) {
       var color = i.isEven ? color1 : color2;

@@ -3,6 +3,8 @@ import 'package:eventify/screens/browse_screen.dart';
 import 'package:eventify/screens/code_screen.dart';
 import 'package:eventify/screens/create_screen.dart';
 import 'package:eventify/widgets/navigation_menu_widget.dart';
+import 'package:eventify/widgets/rounded_button_widget.dart';
+import 'package:eventify/constants.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -52,7 +54,6 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 12.0),
                   child: GestureDetector(
